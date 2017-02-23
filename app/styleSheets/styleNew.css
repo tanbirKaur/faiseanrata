@@ -1,0 +1,432 @@
+.nav i{
+ padding-right: 5px;
+
+}
+.navbar-nav{
+	margin-left: 10px;
+}
+.brand-logo{
+	width: 200px;
+	height: 49px;
+}
+.header-right-side{
+	float: right !important;
+	margin-left: 530px;
+}
+.footer-list li{
+	list-style: none;
+}
+.last-part{
+
+	background-color: #444545;
+	height: 40px;
+	padding: 10px;
+}
+.last-part span{
+
+	color: white;
+	text-align: center;
+
+}
+.main-footer{
+	padding: 0px !important;
+}
+.adjust{
+	padding-left: 110px;
+}
+.list-group{
+	margin-bottom: 10px !important;
+}
+.list-group-item i{
+	padding: 3px;
+
+}
+.box hr {
+   margin-top: 5px !important;
+   margin-bottom: 10px !important;
+   border: 0;
+   border-top: 1px solid #eee;
+}
+.inner{
+	height: 200px;
+}
+.icon{
+	top: 60px !important;
+	right: 30px !important;
+	opacity: 0.8 !important;
+	color: white !important;
+}
+
+
+.message i{
+	padding: 5px;
+}
+.item{
+	/*padding: 10px;*/
+
+
+}
+    .text-g {
+    color: #ffbb55 !important;
+
+}
+.collection-name{
+	background-color: white;
+	text-align: center;
+	text-decoration: none;
+	color: #cc2b68;
+	font-size: 16px;
+}
+
+
+.lower{
+  
+  direction:rtl;
+  
+}
+.lower  i{
+  display: inline-block;
+  cursor: pointer;
+
+
+}
+.lower > i:hover:before,
+.lower > i:hover ~ i:before {
+   font:normal normal normal 14px/1 FontAwesome ;
+   content:"\f005";
+    font-size: 1em;
+
+}
+
+.fa-star-o:before {
+    content: "\f006";
+}
+.box.box-primary {
+    border-top-color: #bd2b64;
+}
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #bd2b64;
+}
+.box.box-success {
+    border-top-color: white;
+}
+.info-box{
+	display: inline-block;
+	width: 250px;
+	margin-right: 20px;
+}
+.info-box-icon {
+	font-size: 20px;
+	
+}
+.space{
+	opacity: 0.7;
+}
+.space i{
+	padding: 5px;
+}
+.img-custom{
+	opacity: 0.8;
+	
+	
+}
+.bg-aqua-custom{
+	background-color: #009f8b !important;
+}
+.btn-custom{
+	margin-top: 10px;
+	width: 125px;
+	font-size: 15px;
+	
+	
+
+}
+.btn-success {
+    background-color: #33cc5b !important;
+    border-color: #33cc5b !important;
+}
+.btn-pink {
+    background-color: #cc2b68 !important;
+    border-color: #cc2b68 !important;
+    transition: all 0.3s;
+    
+}
+.btn-success:hover, .btn-success:active, .btn-success.hover {
+    background-color: #008d4c !important;
+    border-color: #008d4c !important;
+    transition: all 0.3s;
+}
+.btn-pink:hover, .btn-pink.hover{
+	background-color: #009f8b !important;
+	border-color: #009f8b !important;
+	color: white;
+}
+.back{
+  width: 100%;
+  height: 250px;
+  margin-top: -20px;
+  
+  padding: 90px;
+  background: url('dist/img/FAQ.jpg') center;
+  background-repeat: no-repeat;
+  color: white;
+  background-size: cover;
+      
+}
+
+.content-header{
+  background-color: white;
+  padding-bottom: 5px;
+}
+.center-list{
+  text-align: center;
+  
+}
+.center-list li{
+  list-style: none;
+  display: inline-block;
+  margin-right: 60px;
+  margin-left: 60px;
+  font-weight: 700px;
+  font-size: 20px;
+
+  
+  color: white;
+  vertical-align: middle;
+  
+}
+.center-list a:hover, .center-list.hover{
+	color: #cc2b68;
+}
+.active-custom a:visited{
+
+ color: #cc2b68;
+
+}
+.ques{
+	font-size: 20px;
+	color: #444545;
+
+}
+.ans{
+	opacity: 0.7;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-size: 15px;
+	
+}
+.col-md-10{
+	margin-bottom: 30px;
+}
+.form-control:focus {
+    border-color: #444545;
+
+    box-shadow: none;
+}
+.btn-block-custom{
+	width: 20% !important;
+}
+.register-page{
+	margin-top: -30px;
+	overflow: hidden;
+}
+.login-page{
+	margin-top: -30px;
+	overflow: hidden;
+}
+.btn-custom{
+	margin-bottom: 20px;
+}
+.cancel-btn{
+	font-size: 20px;
+}
+.btn-white{
+	color: white;
+	font-size: 20px !important;
+	width: 40% !important;
+	
+}
+.banner{
+	background-image: url(../img/homepage.jpg);
+	
+	    padding: 120px 0 110px 0;
+}
+.banner h3{
+	font-size: 40px;
+    text-align: center;
+    display: block;
+    color: #fff;
+}
+
+.form-contr{
+	
+	position: relative;
+    padding: 13px 16px;
+    margin-bottom: 0;
+    height: 45px;
+    width:500px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    /*border-radius: 4px;*/
+    float: left;
+    margin-right: 30px;
+    margin-left:6%;
+}
+.form-contr:focus {
+    border-color: rgba(0, 0, 0, 0.6);
+     transition: all 0.3s;
+    box-shadow: none;
+}
+.input-gro{
+	position:relative;
+	width:100%;
+	padding: 25px;
+	display: inline-block;
+    background: rgba(0, 0, 0, 0.6);
+
+}
+input:focus, textarea:focus, keygen:focus, select:focus {
+    outline-offset: -2px ! important;
+}
+
+:focus {
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.btn-search{
+	 display: inline-block;
+   
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    
+   margin-top:4px;
+
+    white-space: nowrap;
+    color: #ffffff;
+
+    
+    transition: all 0.3s;
+    border-radius: 4px;
+    text-transform: uppercase;
+   
+
+}
+
+.btn-search{
+    padding: 8px 21.312px;
+    background-color: #CC2B68;
+    
+}
+.designer-card{
+	width: 230px;
+	display: inline-block;
+	margin-right: 20px;
+}
+.img-customm{
+	width: 300px;
+}
+.list-inline{
+	margin-top:  10px !important;
+}
+.unborder{
+	border-bottom: none;
+	padding-bottom: -10px !important;
+}
+.reviewer-card{
+	margin-bottom: -10px !important;
+}
+.pane-size{
+	/*height: 400px;*/
+}
+.similar-heading{
+	margin-bottom: 20px;
+}
+.designer-content{
+	background-color: white;
+	margin-top: 50px;
+	
+	border-radius: 3px;
+
+	
+}
+
+.btn-default{
+	
+	float: left;
+	color: white;
+	
+}
+.drop{
+	margin-top: 30px;
+	
+	display: inline-block;
+	
+}
+.mid-head{
+	margin-top: 70px;
+}
+.event-content{
+	margin-top: 50px;
+}
+.design-card{
+	height: 220px;
+}
+.collection-card{
+	border: 1px solid #ecf0f5;
+	box-shadow: 1px 1px 5px #ABB4B8;
+	padding-bottom: -10px !important;
+	float: left;
+	margin-top: 10px;
+	
+
+}
+.col-card-height{
+	margin-bottom: -15px !important;
+}
+.left  span{
+	color: grey
+}
+.right span{
+	color: grey;
+
+}
+.heading-margin{
+	margin-top: 70px;
+}
+.heading-btn{
+	float: right;
+	width: 100px !important;
+}
+.carousel-control {
+    
+    width: 0% !important;
+   
+}
+.carousel-inner{
+	
+	margin-right: 30px;
+	margin-left: 30px;
+}
+.footer-list a{
+	color: #cc2b68;
+}
+.search-btn {
+    color: white;
+    font-size: 16px !important;
+    width: 100px;
+    margin-left: -50px !important;
+    border-radius: 3px;
+
+}
+
+.textarea-size{
+	width: 50% !important;
+}
+.box-title{
+	margin-top: 12px !important;
+}
+.user-box{
+	border-top-color: #bd2b64 !important;
+}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" style="font-family: 'Montserrat'">
+  <head>
+    <base href="/">
+    <meta name="fragment" content="!">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-signin-client_id" content="183206614956-p5au8me04su1sbq95dfouhoj6d1vsi9h.apps.googleusercontent.com">
+
+    <title>faisean ráta</title>
+    <link rel="shortcut icon" type="image/png" href='/favicon.ico'>
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700%7CDroid+Serif:300,400,700,400italic">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+    <script src="https://apis.google.com/js/client.js?onload=googleOnLoadCallback"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="vendor/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" type="text/css" href="styleSheets/styleNew.css">
+
+
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>-->
+    <script type="text/javascript" src="app.js"></script>
+
+  </head>
+
+  <body ng-app="faiseanrata" class="skin-blue layout-top-nav">
+  <div id="main-wrapper" class="">
+
+    <header class="main-header">
+      <nav class="navbar navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a href=""><img src="img/logo.png" class="brand-logo"></a>
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+              <i class="fa fa-bars"></i>
+            </button>
+          </div>
+
+
+          <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+              <li><a href="designers.html"><i class="fa fa-fw fa-briefcase"></i>Designers</a></li>
+              <li><a href="events.html"><i class="fa fa-fw fa-calendar"></i>Events</a></li>
+            </ul>
+            <ul class=" nav navbar-nav header-right-side" style="float: right;">
+              <li><a href="login.html">Login</a></li>
+              <li><a href="register.html">Register</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <h1 style="margin:auto;position:relative;top:50%;left:40%;" class="page-loading"><br><br><br><br><br><br>Loading...<br><br><br><br><br><br><br></h1>
+  <div ui-view  autoscroll="true" id="ui-view"></div>
+
+  <footer class="main-footer">
+    <div class="container">
+      <div class="col-md-4 adjust">
+
+        <ul class="footer-list">
+          <li><h3>Browse</h3></li>
+          <a href="designers.html"><li>Browse Designers</li></a>
+          <a href="events.html"><li>Browse Events</li></a>
+        </ul>
+
+      </div>
+      <div class="col-md-4 adjust">
+
+        <ul class="footer-list">
+          <li><h3>Legal</h3></li>
+          <a href="FAQ.html"><li>FAQ</li></a>
+          <a href="privacy-policy.html"><li>Privacy Policy</li></a>
+          <a href="cont-us.html"><li>Contact Us</li></a>
+          <a href="how-it-works.html"><li>How It Works</li></a>
+
+        </ul>
+
+      </div>
+      <div class="col-md-4 adjust">
+
+        <ul class="footer-list ">
+          <li><h3>Connect us</h3></li>
+          <a href="#"><li>+91-9717255668</li></a>
+          <a href="#"><li>hello@faiseanrata.com</li></a>
+        </ul>
+
+      </div>
+
+    </div>
+    <!-- /.container -->
+    <div class="last-part">
+      <span class="center-block">© 2016 Faisean Ráta</span>
+
+    </div>
+  </footer>
+
+  </div>
+
+
+<!--Contriollers-->
+  <script type="text/javascript" src="controllers/indexController.js"></script>
+  <script type="text/javascript" src="controllers/homeController.js"></script>
+  <script type="text/javascript" src="controllers/loginController.js"></script>
+  <script type="text/javascript" src="controllers/logoutController.js"></script>
+  <script type="text/javascript" src="controllers/signupUserController.js"></script>
+  <script type="text/javascript" src="controllers/searchController.js"></script>
+  <script type="text/javascript" src="controllers/userProfileController.js"></script>
+  <script type="text/javascript" src="controllers/designerProfileController.js"></script>
+  <script type="text/javascript" src="controllers/collectionController.js"></script>
+  <script type="text/javascript" src="controllers/designController.js"></script>
+  <script type="text/javascript" src="controllers/resetController.js"></script>
+  <script type="text/javascript" src="controllers/usefulController.js"></script>
+  <script type="text/javascript" src="controllers/eventsController.js"></script>
+  <script type="text/javascript" src="services/appConstants.js"></script>
+  <script type="text/javascript" src="services/auth.js"></script>
+
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+          integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+          crossorigin="anonymous"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="vendor/dist/js/app.min.js"></script>
+
+  </body>
+</html>
