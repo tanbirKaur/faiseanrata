@@ -1,4 +1,77 @@
-<div class="banner">
+<script src="vendor/lightslider.js"></script>
+<link type="text/css" rel="stylesheet" href="styleSheets/lightslider.css">
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox")
+            .attr('rel', 'gallery')
+            .fancybox({
+                beforeShow: function () {
+                    if (this.title) {
+                        // New line
+                        this.title += '<br />';
+
+                        // Add tweet button
+                        this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="' + this.href + '">Tweet</a> ';
+
+                        // Add FaceBook like button
+                        this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + this.href + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px;" allowTransparency="true"></iframe>';
+                    }
+                },
+                afterShow: function() {
+                    // Render tweet button
+                    twttr.widgets.load();
+                },
+                helpers : {
+                    title : {
+                        type: 'inside'
+                    }
+                }
+            });
+
+    }); // ready
+
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!--<script>-->
+    <!--$(".fancybox")-->
+        <!--.attr('rel', 'gallery')-->
+        <!--.fancybox({-->
+            <!--beforeShow: function () {-->
+                <!--if (this.title) {-->
+                    <!--// New line-->
+                    <!--this.title += '<br />';-->
+
+                    <!--// Add tweet button-->
+                    <!--this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="' + this.href + '">Tweet</a> ';-->
+
+                    <!--// Add FaceBook like button-->
+                    <!--this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + this.href + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px;" allowTransparency="true"></iframe>';-->
+                <!--}-->
+            <!--},-->
+            <!--afterShow: function () {-->
+                <!--// Render tweet button-->
+                <!--twttr.widgets.load();-->
+            <!--},-->
+            <!--helpers: {-->
+                <!--title: {-->
+                    <!--type: 'inside'-->
+                <!--}, //<&#45;&#45; add a comma to separate the following option-->
+                <!--buttons: {} //<&#45;&#45; add this for buttons-->
+            <!--},-->
+            <!--closeBtn: false, // you will use the buttons now-->
+            <!--arrows: false-->
+        <!--});-->
+<!--</script>-->
+
+    <div class="banner">
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -8,11 +81,11 @@
 
                 <div class="input-gro search">
                     <div class="form-group has-feedback">
-                        <input class="form-control input-lg" type="text" placeholder="Filter By Keywords">
+                        <input ng-model="keyword" class="form-control input-lg" type="text" placeholder="Filter By Keywords">
 
                     </div>
                     <span class="input-group-btn center-block">
-                           <button type="submit" class=" center-block search-btn  btn btn-pink  btn-block btn-flat">SEARCH</button>
+                           <button ng-click="search()" type="submit" class=" center-block search-btn  btn btn-pink  btn-block btn-flat">SEARCH</button>
                     </span>
                 </div>
             </div>
@@ -24,402 +97,266 @@
     <div class="container">
         <section class="">
 
-            <h2 class="heading-margin">Top Designers <button type="submit" class=" heading-btn center-block btn btn-pink btn-white btn-block btn-flat">View All</button></h2><span><p style="opacity: 0.8; margin-top: -5px;">Designers with most reviews </p></span>
+            <h2 class="heading-margin">Top Designers <button ui-sref="designers" type="submit" class=" heading-btn center-block btn btn-pink btn-white btn-block btn-flat">View All</button></h2><span><p style="opacity: 0.8; margin-top: -5px;">Designers with most reviews </p></span>
 
             <div class="box-body">
 
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <div class="item flexslider">
+                            <ul class="slides">
+                                <li class="card-spacing" ng-repeat="designer in top_designers ">
+                            <a ui-sref="designer-profile({id:designer.id})" >
+                                <div class="box box-primary designer-card">
+                                    <div class="box-body box-profile" >
+                                        <img class="profile-user-img img-responsive img-circle" ng-src="{{designer.image_url}}" alt="User profile picture">
 
-                    <div class="carousel-inner">
-                        <a href="profile.html"><div class="item">
-                            <div class="box box-primary designer-card">
-                                <div class="box-body box-profile">
-                                    <img class="profile-user-img img-responsive img-circle" src="dist/img/user4-128x128.jpg" alt="User profile picture">
+                                        <a ui-sref="designer-profile({id:designer.id})"><h3 class="profile-username text-center">{{designer.name}}</h3></a>
+                                        <p class="text-muted text-center" ng-if="designer.location== none">Location not Provided</p>
+                                        <p class="text-muted text-center" ng-if="designer.location!= none"><i class="fa fa-fw fa-map-marker"></i>{{designer.location}}</p>
+                                        <!--<p class="text-muted text-center"><i class="fa fa-fw fa-map-marker"></i>{{designer.location}}</p>-->
 
-                                    <h3 class="profile-username text-center">Designer Card</h3>
 
-                                    <p class="text-muted text-center"><i class="fa fa-fw fa-map-marker"></i>New Delhi</p>
+                                        <ul class="list-group list-group-unbordered">
+                                            <li class="list-group-item" style=" border-left: none; border-right: none; border-bottom: none; cursor: default; color: black; " ng-show="!designer.overall_rating"><strong>No Ratings</strong></li>
+                                            <li class="list-group-item" style="" ng-show="designer.overall_rating">
+                                                <b><i ng-if="designer.overall_rating>=1" class="fa text-yellow fa-star fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=1.5 && designer.overall_rating<2" class="fa text-yellow fa-star-half fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=2" class="fa text-yellow fa-star fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=2.5 && designer.overall_rating<3" class="fa text-yellow fa-star-half fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=3" class="fa text-yellow fa-star fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=3.5 && designer.overall_rating<4" class="fa text-yellow fa-star-half fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=4" class="fa text-yellow fa-star fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=4.5 && designer.overall_rating<5" class="fa text-yellow fa-star-half fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=5" class="fa text-yellow fa-star fa-lg"></i>
+                                                </b>
+
+                                                <a class="pull-right">
+                                                    {{ designer.overall_rating }}
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>{{ designer.reviews_count }} Votes, {{ no_of_reviews }} Reviews</b> <a class="pull-right"></a>
+                                            </li>
+                                        </ul>
+
+                                        <a fb-share designer="{{ designer }}" class="btn btn-block btn-social btn-facebook">
+                                            <i class="fa fa-facebook"></i> Share on Facebook
+                                        </a>
+                                    </div>
+                                </div>
+                            </a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+            <h2 class="heading-margin ">Recently Added Designers<button ui-sref="designers" type="submit" class=" heading-btn center-block btn btn-pink btn-white btn-block btn-flat">View All</button></h2>
+
+            <div class="box-body">
+
+                <div class="item flexslider">
+                    <ul class="slides">
+                        <li class="card-spacing" ng-repeat="designer in recent_designers ">
+                            <a ui-sref="designer-profile({id:designer.id})" >
+                                <div class="box box-primary designer-card">
+                                    <div class="box-body box-profile" >
+                                        <img class="profile-user-img img-responsive img-circle" ng-src="{{designer.image_url}}" alt="User profile picture">
+
+                                        <h3 class="profile-username text-center">{{designer.name}}</h3>
+
+                                        <p class="text-muted text-center"><i class="fa fa-fw fa-map-marker"></i>{{designer.location}}</p>
+
+
+                                        <ul class="list-group list-group-unbordered">
+                                            <li class="list-group-item" style=" border-left: none; border-right: none; border-bottom: none; cursor: default; color: black; border-top-left-radius: 0; border-top-right-radius: 0; padding-left: 0; " ng-show="!designer.overall_rating"><strong>No Ratings</strong></li>
+                                            <li class="list-group-item" style="" ng-show="designer.overall_rating">
+                                                <b><i ng-if="designer.overall_rating>=1" class="fa text-yellow fa-star fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=1.5 && designer.overall_rating<2" class="fa text-yellow fa-star-half fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=2" class="fa text-yellow fa-star fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=2.5 && designer.overall_rating<3" class="fa text-yellow fa-star-half fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=3" class="fa text-yellow fa-star fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=3.5 && designer.overall_rating<4" class="fa text-yellow fa-star-half fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=4" class="fa text-yellow fa-star fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=4.5 && designer.overall_rating<5" class="fa text-yellow fa-star-half fa-lg"></i>
+                                                    <i ng-if="designer.overall_rating>=5" class="fa text-yellow fa-star fa-lg"></i>
+                                                </b>
+
+                                                <a class="pull-right">
+                                                    {{ designer.overall_rating }}
+                                                </a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>{{ designer.reviews_count }} Votes, {{ no_of_reviews }} Reviews</b> <a class="pull-right"></a>
+                                            </li>
+                                        </ul>
+
+                                        <a fb-share designer="{{ designer }}" class="btn btn-block btn-social btn-facebook">
+                                            <i class="fa fa-facebook"></i> Share on Facebook
+                                        </a>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+
+            <h2>Trending Designs </h2>
+            <div class="box-body">
+
+
+                    <div class="item flexslider">
+                        <ul class="slides">
+
+                        <li class="active " ng-repeat="design in trending_designs" style="">
+
+                            <div class="box box-primary design-card-potrait">
+                                <div class="box-body box-profile design-card-size inner-card-spacing" >
+                                    <a  data-fancybox="images"  href="{{design.image_url}}"> <img   class="img-customm img-responsive  " ng-src="{{design.image_url}}" alt="User profile picture"></a>
+
+                                    <ul class="list-inline text-center" style="border-bottom: none;">
+                                            <!--<li><a href="#" class=" text-sm"><i class="fa fa-thumbs-o-up fa-lg margin-r-5"></i>{{ design.likes }}</a></li>-->
+                                            <!--<li ><a fb-shared design="{{ design }}" class=" text-sm" style="cursor:pointer;"><i class="fa fa-share-alt fa-lg margin-r-5"></i> Share</a></li>-->
+                                        <li><a class="btn btn-primary btn-xs" style="background-color: #4267b2"><i class="fa fa-thumbs-up  margin-r-5" style="color: white;;"></i>LiKe &nbsp{{ design.likes }}</a></li>
+                                        <li><a fb-shared design="{{ design }}" class="btn btn-primary btn-xs" style="background-color: #4267b2">Share</a></li>
+
+                                        </ul>
+
+                                </div>
+                            </div>
+
+                        </li>
+                        </ul>
+                    </div>
+            </div>
+
+
+            <h2>Recently Added Designs</h2>
+            <div class="box-body">
+
+
+                <div class="item flexslider">
+                    <ul class="slides">
+
+                        <li class=" active " ng-repeat="design in recent_designs" ">
+
+                                <div class="box box-primary design-card-potrait">
+                                    <div class="box-body box-profile design-card-size inner-card-spacing">
+                                        <a data-fancybox="images"  href="{{ design.image_url }}" > <img class="img-customm img-responsive" ng-src="{{design.image_url}}" alt=""></a>
+
+
+
+                                        <ul class="list-inline text-center" style="border-bottom: none;">
+                                            <li><a class="btn btn-primary btn-xs" style="background-color: #4267b2"><i class="fa fa-thumbs-up  margin-r-5" style="color: white;;"></i>LiKe &nbsp{{ design.likes }}</a></li>
+                                            <li><a fb-shared design="{{ design }}" class="btn btn-primary btn-xs" style="background-color: #4267b2">Share</a></li>
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+
+            <h2>Top Reviewers </h2>
+            <div class="box-body">
+                <div class="item flexslider">
+                    <ul class="slides">
+
+                        <li class="item active  " ng-repeat="reviewer in top_reviewers"  >
+                            <div class="box box-primary  reviewer-card-potrait">
+                                <div class="box-body box-profile reviewer-card">
+                                    <img class="profile-user-img img-responsive img-circle" ng-src="{{reviewer.image_url}}" alt="User profile picture">
+
+                                    <h3 class="profile-username text-center" ng-if="reviewer.name != undefined">{{ reviewer.name }}</h3>
+                                    <h3 class="profile-username text-center" ng-if="reviewer.name == undefined" >{{ reviewer.first_name }} {{ reviewer.last_name }}</h3>
+                                    <p class="text-muted text-center" ng-if="reviewer.location== undefined">Location not Provided</p>
+                                    <p class="text-muted text-center" ng-if="reviewer.location!= undefined"><i class="fa fa-fw fa-map-marker"></i>{{reviewer.location}}</p>
 
                                     <ul class="list-group list-group-unbordered">
                                         <li class="list-group-item">
-                                            <b><i class="fa text-yellow fa-star fa-lg"></i><i class="fa text-yellow fa-star fa-lg"></i><i class="fa text-yellow fa-star fa-lg"></i></b><a class="pull-right">3.2</a>
+                                            <i class="fa fa-shield"></i><span ng-if="reviewer.badge=='' ||reviewer.badge==null "> No Badge </span><span> {{ reviewer.badge }} </span>
+                                            <span class="pull-right"><i class="fa fa-database"></i><span>{{ reviewer.points }} Points</span></span>
                                         </li>
-                                        <li class="list-group-item">
-                                            <b>3 Votes, 3 Reviews</b> <a class="pull-right"></a>
-                                        </li>
-
 
                                     </ul>
+                                </div>
+                            </div>
 
-                                    <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                                    <a class="btn btn-social-icon btn-google"><i class="fa fa-google-plus"></i></a>
-                                    <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-                                </div></a>
-                        <!-- /.box-body -->
+                        </li>
+                    </ul>
+                </div>
                     </div>
 
 
-                </div>
-                <a href="profile.html"><div class="item">
-                    <div class="box box-primary designer-card">
-                        <div class="box-body box-profile">
-                            <img class="profile-user-img img-responsive img-circle" src="dist/img/user4-128x128.jpg" alt="User profile picture">
 
-                            <h3 class="profile-username text-center">Designer Card</h3>
-
-                            <p class="text-muted text-center"><i class="fa fa-fw fa-map-marker"></i>New Delhi</p>
-
-                            <ul class="list-group list-group-unbordered">
-                                <li class="list-group-item">
-                                    <b><i class="fa text-yellow fa-star fa-lg"></i><i class="fa text-yellow fa-star fa-lg"></i><i class="fa text-yellow fa-star fa-lg"></i></b><a class="pull-right">3.2</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>3 Votes, 3 Reviews</b> <a class="pull-right"></a>
-                                </li>
+    </section>
 
 
-                            </ul>
 
-                            <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                            <a class="btn btn-social-icon btn-google"><i class="fa fa-google-plus"></i></a>
-                            <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-                        </div></a>
-                <!-- /.box-body -->
-            </div>
-
-    </div>
-    <a href="profile.html"><div class="item active">
-        <div class="box box-primary designer-card">
-            <div class="box-body box-profile">
-                <img class="profile-user-img img-responsive img-circle" src="dist/img/user4-128x128.jpg" alt="User profile picture">
-
-                <h3 class="profile-username text-center">Designer Card</h3>
-
-                <p class="text-muted text-center"><i class="fa fa-fw fa-map-marker"></i>New Delhi</p>
-
-                <ul class="list-group list-group-unbordered">
-                    <li class="list-group-item">
-                        <b><i class="fa text-yellow fa-star fa-lg"></i><i class="fa text-yellow fa-star fa-lg"></i><i class="fa text-yellow fa-star fa-lg"></i></b><a class="pull-right">3.2</a>
-                    </li>
-                    <li class="list-group-item">
-                        <b>3 Votes, 3 Reviews</b> <a class="pull-right"></a>
-                    </li>
-
-
-                </ul>
-
-                <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                <a class="btn btn-social-icon btn-google"><i class="fa fa-google-plus"></i></a>
-                <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-            </div></a>
-    <!-- /.box-body -->
-</div>
 
 
 </div>
 </div>
-<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-    <span class="fa fa-angle-left fa-lg"></span>
-</a>
-<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-    <span class="fa fa-angle-right fa-lg"></span>
-</a>
-</div>
-</div>
+<script type="text/javascript">
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            animationLoop: false,
+            itemWidth: 225,
+            itemMargin: 30,
+            minItems: 1,
+            maxItems: 12
+        });
+    });
+
+
+
+//    $(".fancybox")
+//        .attr('rel', 'gallery')
+//        .fancybox({
+//            beforeShow: function () {
+//                if (this.title) {
+//                    // New line
+//                    this.title += '<br />';
+//
+//                    // Add tweet button
+//                    this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="' + this.href + '">Tweet</a> ';
+//
+//                    // Add FaceBook like button
+//                    this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + this.href + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px;" allowTransparency="true"></iframe>';
+//                }
+//            },
+//            afterShow: function() {
+//                // Render tweet button
+//                twttr.widgets.load();
+//            },
+//            helpers : {
+//                title : {
+//                    type: 'inside'
+//                }
+//            }
+//        });
+</script>
 
 
-
-
-<h2>Most Viewed Designs <button type="submit" class=" heading-btn center-block btn btn-pink btn-white btn-block btn-flat">View All</button></h2>
-<div class="box-body">
-    <div id="carousel-example-generic2" class="carousel slide" data-ride="carousel">
-
-        <div class="carousel-inner">
-            <div class="item">
-                <div class="box box-primary designer-card">
-                    <div class="box-body box-profile">
-                        <img class="img-customm img-responsive " src="dist/img/user4-128x128.jpg" alt="User profile picture">
-
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item  text-center ">
-                                <b>Design Card</b>
-                            </li>
-
-
-
-                            <ul class="list-inline text-center">
-                                <li><a href="#" class=" text-sm"><i class="fa fa-thumbs-o-up fa-2x margin-r-5"></i> Like</a>
-                                </li>
-                                <li><a href="#" class=" text-sm"><i class="fa fa-share fa-2x margin-r-5"></i> Share</a></li>
-
-
-                            </ul>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-
-                </div>
-
-            </div>
-            <div class="item">
-                <div class="box box-primary designer-card">
-                    <div class="box-body box-profile">
-                        <img class="img-customm img-responsive " src="dist/img/user4-128x128.jpg" alt="User profile picture">
-
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item  text-center ">
-                                <b>Design Card</b>
-                            </li>
-
-
-
-                            <ul class="list-inline text-center">
-                                <li><a href="#" class=" text-sm"><i class="fa fa-thumbs-o-up fa-2x margin-r-5"></i> Like</a>
-                                </li>
-                                <li><a href="#" class=" text-sm"><i class="fa fa-share fa-2x margin-r-5"></i> Share</a></li>
-
-
-                            </ul>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-
-            </div>
-            <div class="item active">
-                <div class="box box-primary designer-card">
-                    <div class="box-body box-profile">
-                        <img class="img-customm img-responsive " src="dist/img/user4-128x128.jpg" alt="User profile picture">
-
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item  text-center ">
-                                <b>Design Card</b>
-                            </li>
-
-
-
-                            <ul class="list-inline text-center">
-                                <li><a href="#" class=" text-sm"><i class="fa fa-thumbs-o-up fa-2x margin-r-5"></i> Like</a>
-                                </li>
-                                <li><a href="#" class=" text-sm"><i class="fa fa-share fa-2x margin-r-5"></i> Share</a></li>
-
-
-                            </ul>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-
-
-            </div>
-        </div>
-        <a class="left carousel-control" href="#carousel-example-generic2" data-slide="prev">
-            <span class="fa fa-angle-left fa-lg"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic2" data-slide="next">
-            <span class="fa fa-angle-right fa-lg"></span>
-        </a>
-    </div>
-</div>
-
-
-
-
-<h2>Trending Designs <button type="submit" class=" heading-btn center-block btn btn-pink btn-white btn-block btn-flat">View All</button></h2>
-<div class="box-body">
-    <div id="carousel-example-generic3" class="carousel slide" data-ride="carousel">
-
-        <div class="carousel-inner">
-            <div class="item">
-                <div class="box box-primary designer-card">
-                    <div class="box-body box-profile">
-                        <img class="img-customm img-responsive " src="dist/img/user4-128x128.jpg" alt="User profile picture">
-
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item  text-center ">
-                                <b>Design Card</b>
-                            </li>
-
-
-
-                            <ul class="list-inline text-center">
-                                <li><a href="#" class=" text-sm"><i class="fa fa-thumbs-o-up fa-2x margin-r-5"></i> Like</a>
-                                </li>
-                                <li><a href="#" class=" text-sm"><i class="fa fa-share fa-2x margin-r-5"></i> Share</a></li>
-
-
-                            </ul>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-
-            </div>
-            <div class="item">
-                <div class="box box-primary designer-card">
-                    <div class="box-body box-profile">
-                        <img class="img-customm img-responsive " src="dist/img/user4-128x128.jpg" alt="User profile picture">
-
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item  text-center ">
-                                <b>Design Card</b>
-                            </li>
-
-
-
-                            <ul class="list-inline text-center">
-                                <li><a href="#" class=" text-sm"><i class="fa fa-thumbs-o-up fa-2x margin-r-5"></i> Like</a>
-                                </li>
-                                <li><a href="#" class=" text-sm"><i class="fa fa-share fa-2x margin-r-5"></i> Share</a></li>
-
-
-                            </ul>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-
-            </div>
-            <div class="item active">
-                <div class="box box-primary designer-card">
-                    <div class="box-body box-profile reviewer-card">
-                        <img class="profile-user-img img-responsive img-circle" src="dist/img/user4-128x128.jpg" alt="User profile picture">
-
-                        <h3 class="profile-username text-center">Reviewer Card</h3>
-
-                        <p class="text-muted text-center"><i class="fa fa-fw fa-map-marker"></i>New Delhi</p>
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item">
-                                <b><i class="fa text-yellow fa-star fa-lg"></i><i class="fa text-yellow fa-star fa-lg"></i><i class="fa text-yellow fa-star fa-lg"></i></b><a class="pull-right">3.2</a>
-                            </li>
-                            <li class="list-group-item unborder">
-                                <b>3 Votes, 3 Reviews</b> <a class="pull-right"></a>
-                            </li>
-
-
-                        </ul>
-
-
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-
-
-            </div>
-        </div>
-        <a class="left carousel-control" href="#carousel-example-generic3" data-slide="prev">
-            <span class="fa fa-angle-left fa-lg"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic3" data-slide="next">
-            <span class="fa fa-angle-right fa-lg"></span>
-        </a>
-    </div>
-</div>
-
-<h2>Top Reviewers <button type="submit" class=" heading-btn center-block btn btn-pink btn-white btn-block btn-flat">View All</button></h2>
-<div class="box-body">
-    <div id="carousel-example-generic4" class="carousel slide" data-ride="carousel">
-
-        <div class="carousel-inner">
-            <div class="item">
-                <div class="box box-primary designer-card">
-                    <div class="box-body box-profile">
-                        <img class="img-customm img-responsive " src="dist/img/user4-128x128.jpg" alt="User profile picture">
-
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item  text-center ">
-                                <b>Design Card</b>
-                            </li>
-
-
-
-                            <ul class="list-inline text-center">
-                                <li><a href="#" class=" text-sm"><i class="fa fa-thumbs-o-up fa-2x margin-r-5"></i> Like</a>
-                                </li>
-                                <li><a href="#" class=" text-sm"><i class="fa fa-share fa-2x margin-r-5"></i> Share</a></li>
-
-
-                            </ul>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-
-            </div>
-            <div class="item">
-                <div class="box box-primary designer-card">
-                    <div class="box-body box-profile">
-                        <img class="img-customm img-responsive " src="dist/img/user4-128x128.jpg" alt="User profile picture">
-
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item  text-center ">
-                                <b>Design Card</b>
-                            </li>
-
-
-
-                            <ul class="list-inline text-center">
-                                <li><a href="#" class=" text-sm"><i class="fa fa-thumbs-o-up fa-2x margin-r-5"></i> Like</a>
-                                </li>
-                                <li><a href="#" class=" text-sm"><i class="fa fa-share fa-2x margin-r-5"></i> Share</a></li>
-
-
-                            </ul>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-
-            </div>
-            <div class="item active">
-                <div class="box box-primary designer-card">
-                    <div class="box-body box-profile reviewer-card">
-                        <img class="profile-user-img img-responsive img-circle" src="dist/img/user4-128x128.jpg" alt="User profile picture">
-
-                        <h3 class="profile-username text-center">Reviewer Card</h3>
-
-                        <p class="text-muted text-center"><i class="fa fa-fw fa-map-marker"></i>New Delhi</p>
-
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item">
-                                <b><i class="fa text-yellow fa-star fa-lg"></i><i class="fa text-yellow fa-star fa-lg"></i><i class="fa text-yellow fa-star fa-lg"></i></b><a class="pull-right">3.2</a>
-                            </li>
-                            <li class="list-group-item unborder">
-                                <b>3 Votes, 3 Reviews</b> <a class="pull-right"></a>
-                            </li>
-
-
-                        </ul>
-
-
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-
-
-            </div>
-        </div>
-        <a class="left carousel-control" href="#carousel-example-generic4" data-slide="prev">
-            <span class="fa fa-angle-left fa-lg"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic4" data-slide="next">
-            <span class="fa fa-angle-right fa-lg"></span>
-        </a>
-    </div>
-</div>
-
-
-</div>
-
-
-</section>
-
-</div>

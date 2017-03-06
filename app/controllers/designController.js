@@ -1,4 +1,4 @@
-app.controller('designController', ['$stateParams', 'toastr', '$rootScope', '$scope', '$http', '$window', 'appConstants' , 'authService', 
+app.controller('designController', ['$stateParams', 'toastr', '$rootScope', '$scope', '$http', '$window', 'appConstants' , 'authService',
 	function($stateParams, toastr, $rootScope, $scope, $http, $window, appConstants, authService) {
 		
 		var view_design = function(){
@@ -9,12 +9,12 @@ app.controller('designController', ['$stateParams', 'toastr', '$rootScope', '$sc
 
 			$http.get(appConstants.apiUrl + "/Designs/" + $stateParams.designId)
 				.then(function(response){
-					console.log("Success");
+					// console.log("Success");
 					$scope.data = response.data;
-					console.log(response.data);
+					//console.log(response.data);
 				}, function(error){
-					console.log("Error");
-					console.log(err);
+					//console.log("Error");
+					//console.log(err);
 				});
 
 		};

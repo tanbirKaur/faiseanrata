@@ -1,9 +1,9 @@
-var app = angular.module("faiseanrata", ['ui.router']);
+var app = angular.module("faiseanrata", ['ui.router', 'toastr']);
 app.config(function($locationProvider, $stateProvider, $urlRouterProvider){
     $stateProvider
         .state("index", {
             url: "/",
-            templateUrl : "/views/home.html",
+            templateUrl : "views/home.html",
             controller : "indexController"
         })
         .state("login",{
@@ -69,7 +69,27 @@ app.config(function($locationProvider, $stateProvider, $urlRouterProvider){
             templateUrl:"views/events.html",
             controller:"eventsController"
         })
-    ;
+        .state("faq", {
+            url:"/faq",
+            templateUrl:"views/faq.html",
+            controller:"usefulController"
+        })
+        .state("contact", {
+            url:"/contact_us",
+            templateUrl:"views/contact_us.html",
+            controller:"usefulController"
+        })
+        .state("privacy-policy", {
+            url:"/privacy_policy",
+            templateUrl:"views/privacy_policy.html",
+            controller:"usefulController"
+        })
+        .state("how-it-works", {
+            url:"/how-it-works",
+            templateUrl:"views/how-it-works.html",
+            controller:"usefulController"
+        });
+
     $urlRouterProvider.otherwise("/");
     $locationProvider.html5Mode(true);
 });
@@ -194,8 +214,8 @@ app.directive('ngFiles', ['$parse', function ($parse) {
 
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
+    // console.log('statusChangeCallback');
+    // console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
@@ -260,8 +280,8 @@ window.fbAsyncInit = function() {
 function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me?scope=email', function(response) {
-        console.log(response);
-        console.log('Successful login for: ' + response.name);
+        // console.log(response);
+        // console.log('Successful login for: ' + response.name);
         document.getElementById('status').innerHTML =
             'Thanks for logging in, ' + response.name + '!';
     });

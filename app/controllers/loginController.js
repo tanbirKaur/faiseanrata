@@ -73,29 +73,29 @@ var data = {}
                 			$http.post(appConstants.apiUrl + "Externals/", data)
 			                	.then(function(response1){
 			                		toastr.success("Successfully logged in");
-			                		console.log(response1);
+			                		// console.log(response1);
                           $window.localStorage['userId'] = response1.data.id;
 					                $window.location.href = "/profile-edit";
 
 			                	}, function(err1){
-			                		console.log("Error in Login PUT");
+			                		// console.log("Error in Login PUT");
 			                		toastr.error("Error in Login");
-			            			console.log(err1);
+			            			// console.log(err1);
 			                		$window.localStorage.clear();
 			                	});
                 		}
 
                 		else
                 		{
-                			console.log("Exist");
+                			// console.log("Exist");
                 			toastr.success("Successfully logged in");
                       $window.localStorage['userId'] = response2.data[0].id;
 			                $window.location.href = "/profile-edit";
                 		}
                 	}, function(err2){
-                		console.log("Error in Social Login GET");
+                		// console.log("Error in Social Login GET");
                 		toastr.error("Error in Login");
-            			console.log(err2);
+            			// console.log(err2);
                 		$window.localStorage.clear();
                 	});
 
@@ -111,8 +111,8 @@ var data = {}
 
  // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
+    // console.log('statusChangeCallback');
+    // console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
@@ -169,15 +169,15 @@ facebookInit();
 
   function testAPI() {
     FB.api('/me?scope=email', function(response) {
-		console.log(response);
-		console.log('Successful login for: ' + response.name);
+		// console.log(response);
+		// console.log('Successful login for: ' + response.name);
 		data.name = response.name;
 		data.uid = "fb" + response.id;
 		data.email = "";
     
 	    FB.api('/me/picture?height=150&width:150', function(response) {
-			console.log(response);
-			console.log("picture");
+			// console.log(response);
+			// console.log("picture");
 			data.image_url = response.data.url;
 		
 
@@ -188,38 +188,38 @@ facebookInit();
 	    			$window.localStorage['id'] = data.uid;
 	    			$window.localStorage['access_token'] = "";    
 	                $window.localStorage['type'] = "external";
-                  console.log("response2");
-                  console.log(response2.data);
+                  // console.log("response2");
+                  // console.log(response2.data);
 
             		if(response2.data.length == 0)
             		{
-            			console.log("Not Exist");
+            			// console.log("Not Exist");
             			$http.post(appConstants.apiUrl + "Externals/", data)
 		                	.then(function(response1){
 		                		toastr.success("successfully logged in PUT");
-		                		console.log(response1);
+		                		// console.log(response1);
                         $window.localStorage['userId'] = response1.data.id;
 				                $window.location.href = "/profile-edit";
 
 		                	}, function(err1){
-		                		console.log("Error in Social Login PUT");
+		                		// console.log("Error in Social Login PUT");
 		                		toastr.error("Error in Login");
-		            			console.log(err1);
+		            			// console.log(err1);
 		                		$window.localStorage.clear();
 		                	});
             		}
 
             		else
             		{
-            			console.log("Exist");
+            			// console.log("Exist");
             			toastr.success("successfully logged in GET");
                   $window.localStorage['userId'] = response2.data[0].id;
 		                $window.location.href = "/profile-edit";
             		}
             	}, function(err2){
-            		console.log("Error in Social Login GET");
+            		// console.log("Error in Social Login GET");
             		toastr.error("Error in Login");
-        			console.log(err2);
+        			// console.log(err2);
             		$window.localStorage.clear();
             	});
 
@@ -227,7 +227,7 @@ facebookInit();
 
     });
 
-    console.log(data);
+    // console.log(data);
 
   }
 
@@ -243,15 +243,15 @@ facebookInit();
         {
            if (response.authResponse) 
            {
-             console.log('Welcome!  Fetching your information.... ');
+             // console.log('Welcome!  Fetching your information.... ');
              var access_token = response.authResponse.accessToken;
-             console.log(response.authResponse);
+             // console.log(response.authResponse);
 
              testAPI();
            } 
            else 
            {
-             console.log('User cancelled login or did not fully authorize.');
+             // console.log('User cancelled login or did not fully authorize.');
            }
          });
     };

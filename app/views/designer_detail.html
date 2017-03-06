@@ -1,0 +1,382 @@
+<div class="content-wrapper">
+    <div class="container">
+
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-3">
+
+                    <!-- Profile Image -->
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle" ng-src={{data.image_url}} alt="User profile picture">
+
+                            <h3 class="profile-username text-center">{{ data.name }}</h3>
+
+                            <p class="text-muted text-center"><i class="fa fa-fw fa-map-marker"></i>{{ data.location }}</p>
+
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item" ng-hide="!data.overall_rating">
+                                    <b><i ng-if="data.overall_rating>=1" class="fa text-yellow fa-lg fa-star"></i>
+                                        <i ng-if="data.overall_rating>=1.5 && data.overall_rating<2" class="fa text-yellow fa-lg fa-star-half"></i>
+                                        <i ng-if="data.overall_rating>=2" class="fa text-yellow fa-lg fa-star"></i>
+                                        <i ng-if="data.overall_rating>=2.5 && data.overall_rating<3" class="fa text-yellow fa-lg fa-star-half"></i>
+                                        <i ng-if="data.overall_rating>=3" class="fa text-yellow fa-lg fa-star"></i>
+                                        <i ng-if="data.overall_rating>=3.5 && data.overall_rating<4" class="fa text-yellow fa-lg fa-star-half"></i>
+                                        <i ng-if="data.overall_rating>=4" class="fa text-yellow fa-lg fa-star"></i>
+                                        <i ng-if="data.overall_rating>=4.5 && data.overall_rating<5" class="fa text-yellow fa-lg fa-star-half"></i>
+                                        <i ng-if="data.overall_rating>=5" class="fa text-yellow fa-lg fa-star"></i>
+                                    </b><a class="pull-right">{{ data.overall_rating }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>{{ data.reviews_count }} Votes, {{ no_of_reviews }} Reviews</b> <a class="pull-right"> </a>
+                                </li>
+
+
+                            </ul>
+
+                            <a fb-share designer="{{ data }}" class="btn btn-block btn-social btn-facebook">
+                                <i class="fa fa-facebook"></i> Share on Facebook
+                            </a>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+
+                    <!-- About Me Box -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Information</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body k">
+
+                            <strong><i class="fa fa-transgender margin-r-5"></i>Gender</strong>
+
+                            <p class="text-muted">{{ data.type }}</p>
+
+                            <hr>
+
+                            <strong><i class="fa fa-phone margin-r-5"></i> Contacts</strong>
+
+                            <p ng-repeat="contact in data.contacts track by $index" class="text-muted">{{ contact }}
+
+                            </p>
+
+                            <hr>
+
+                            <strong><i class="fa fa-file-text-o margin-r-5"></i>Stores</strong>
+
+                            <p ng-repeat="store in data.stores track by $index" class="text-muted">{{ store.text }}</p>
+                            <hr>
+                            <strong><i class="fa fa-globe margin-r-5"></i>Sites</strong>
+
+                            <p ng-repeat="site in data.sites track by $index" class="text-muted">{{ site.text }}</p>
+
+                            <hr>
+                            <strong><i class="fa fa-street-view margin-r-5"></i>Shows</strong>
+
+                            <p ng-repeat="show in data.shows track by $index"class="text-muted">{{ show.text }}</p>
+
+                            <hr>
+                            <strong><i class="fa fa-envelope margin-r-5"></i>Email</strong>
+
+                            <p class="text-muted">{{ data.social_media.email }}</p>
+                            <hr>
+                            <strong><i class="fa fa-graduation-cap margin-r-5"></i>Graduation</strong>
+
+                            <p class="text-muted">{{ data.graduation }}</p>
+
+                            <hr>
+                            <strong><i class="fa fa-share-alt margin-r-5"></i>Follow Me:</strong>
+                            <p><a target="_blank" href="{{ data.social_media.facebook }}" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+                                <a  target="_blank" href="{{ data.social_media.google }}" class="btn btn-social-icon btn-google"><i class="fa fa-google-plus"></i></a>
+                                <a target="_blank" href="{{ data.social_media.twitter }}" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+                            </p>
+
+
+
+
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="nav-tabs-custom">
+                        <div class=" profile-tabs-collapse" style="display: none;">
+                            <div class="box box-default collapsed-box">
+                                <div class="box-header with-border">
+                                    <b class="box-title box-title-collapsed" >{{ data.name }}</b>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus" ></i>
+                                        </button>
+                                    </div>
+                                    <!-- /.box-tools -->
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body" style="display: block;">
+                                    <div class="box-footer no-padding">
+                                        <ul class="nav nav-stacked">
+                                            <li class="active"><a target="_blank" href="#profile" data-toggle="tab"><i class="fa fa-user margin-r-5"></i>Profile</a></li>
+                                            <li><a ng-click="get_collections()" target="_blank" href="#collections" data-toggle="tab"><i class="fa fa-list margin-r-5"></i>Collections</a></li>
+                                            <li class=""><a target="_blank" ng-click="get_events()" href="#events" data-toggle="tab"><i class="fa fa-calendar margin-r-5"></i>Events</a></li>
+                                            <li class=""><a target="_blank" ng-click="get_reviews()" href="#reviews" data-toggle="tab"><i class="fa fa-star margin-r-5"></i>Reviews</a></li>
+                                            <li class=""><a ng-click="get_submit_review()" target="_blank" href="#provide-review" data-toggle="tab"><i class="fa fa-flag margin-r-5"></i>Provide Review</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+
+
+
+
+                        <ul class="nav nav-tabs profile-tabs-show ">
+                            <li class="active"><a target="_blank" href="#profile" data-toggle="tab"><i class="fa fa-user margin-r-5"></i>Profile</a></li>
+                            <li><a ng-click="get_collections()" target="_blank" href="#collections" data-toggle="tab"><i class="fa fa-list margin-r-5"></i>Collections</a></li>
+                            <li class=""><a target="_blank" ng-click="get_events()" href="#events" data-toggle="tab"><i class="fa fa-calendar margin-r-5"></i>Events</a></li>
+                            <li class=""><a target="_blank" ng-click="get_reviews()" href="#reviews" data-toggle="tab"><i class="fa fa-star margin-r-5"></i>Reviews</a></li>
+                            <li class=""><a ng-click="get_submit_review()" target="_blank" href="#provide-review" data-toggle="tab"><i class="fa fa-flag margin-r-5"></i>Provide Review</a></li>
+                        </ul>
+                        <div class="tab-content pane-size">
+                            <div class="tab-pane active" id="profile" style="min-height: 300px;" >
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div ng-if="!data.desc"><h5>No Description right now..</h5></div>
+                                        <h4 class="box-title">
+                                            Description
+                                        </h4>
+                                        <span style="opacity: 0.8;">{{ data.desc }}</span>
+                                    </div>
+
+                                </div>
+
+                                <!--<textarea class="form-control" rows="3" placeholder="" disabled="">-->
+                                    <!--{{ data.desc }}-->
+                                <!--</textarea>-->
+
+                            </div>
+
+
+                            <div class="tab-pane" id="collections" style="min-height: 300px;">
+                                <div class="row ">
+
+                            <div class="item " ng-repeat= "collection in collections" style=" display:inline-block;  margin-left: 20px; margin-bottom: 20px;">
+                                <a ui-sref="collection({collectionId:collection.id})">
+                                    <div class="box box-primary design-card-potrait collection-card" style="border-top: none !important;">
+                                        <div class="box-body box-profile design-card-size">
+                                            <img class="img-customm img-responsive" ng-init="get_collection_pic(collection.id, $index)" src="{{ image_id[$index] }}" alt="User profile picture">
+                                            <ul class="list-group list-group-unbordered">
+
+
+                                                <ul class="list-inline text-center">
+                                                    <b>{{ collection.name }}</b>
+
+                                                </ul>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        </div>
+
+                            <!--<div class="tab-pane" id="collections">-->
+                                <!--<div class="row ">-->
+                                    <!--<div class="col-md-4" ng-repeat= "collection in collections">-->
+                                        <!--<div class="item">-->
+                                            <!--<div class="designer-card collection-card">-->
+                                                <!--<div class="box-body box-profile col-card-height">-->
+                                                    <!--<img class="img-customm img-responsive design-card " ng-init="get_collection_pic(collection.id, $index)" src="{{ image_id[$index] }}" alt="User profile picture">-->
+                                                    <!--<ul class="list-group list-group-unbordered">-->
+                                                        <!--<li class="list-group-item  text-center unborder ">-->
+                                                            <!--<b>{{ collection.name }}</b>-->
+                                                        <!--</li>-->
+
+                                                    <!--</ul>-->
+                                                <!--</div>-->
+                                                <!--&lt;!&ndash; /.box-body &ndash;&gt;-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                   <!---->
+                                <!--</div>-->
+
+
+                            <!--</div>-->
+
+                            <div class="tab-pane" id="events" style="min-height:300px;">
+                                <div class="tab-event" ng-if="!events[0]" style="min-height: 300px"><h5 style="opacity: 0.8;">No Events right now..</h5></div>
+                              <div class="row">
+
+                                <div class="tab-event col-md-6" ng-repeat="event in events">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-aqua bg-aqua-custom">{{ event.timestamp | date:'dd' }} {{ event.timestamp | date:'MMMM' }}</span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text"><strong>{{ event.name }}</strong></span>
+                                        <span class="space"><i class="fa fa-map-marker"></i>{{ event.location }}</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                                </div>
+                                <!-- /.info-box -->
+                              </div>
+
+                            </div>
+
+                            <div class="tab-pane" id="reviews" style="min-height: 300px;">
+
+                                <div class="box box-success">
+                                    <div class="box-header ui-sortable-handle" style="cursor: move;">
+
+
+                                        <h3 class="box-title">Overall Reviews</h3>
+                                        <button ng-click="get_submit_review()" target="_blank"  data-target="#provide-review" data-toggle="tab"  class="btn btn-flat btn-block btn-success btn-sm center-block btn-custom" style="float: right;">Provide Review</button></a>
+
+
+                                    </div>
+                                    <div class="slimScrollDiv" style="position: relative; overflow: auto; width: auto; height: 400px;"><div class="box-body chat" id="chat-box" style="overflow: auto; width: auto; height: 400px;">
+                                        <div ng-if="!reviews[0]"><h5 style="opacity: 0.8;">No reviews yet.. Write one on clicking button above</h5></div>
+
+                                        <!-- chat item -->
+                                        <div class="item" data-ng-init="get_reviewer_data(review.reviewerId, review.externalId, $index)" ng-repeat="review in reviews">
+                                            <img src="{{ reviewer_details[$index].image_url }}" alt="user image" class="online">
+
+
+                                            <p class="message">
+                                                <a href="#" class="name"
+
+                                                    ng-if="reviewer_details[$index].name == undefined"> {{ reviewer_details[$index].first_name + " " + reviewer_details[$index].last_name }}>
+                                                </a>
+                                                <a href="#" class="name"
+
+                                                   ng-if="reviewer_details[$index].name != undefined"> {{ reviewer_details[$index].name}}
+                                                </a>
+                                                <i class="fa fa-shield"></i> <strong ng-if="reviewer_details[$index].badge=='' || reviewer_details[$index].badge==null" >No Badge</strong>{{ reviewer_details[$index].badge }}&nbsp &nbsp<strong><i class="fa fa-database"></i></strong> <strong>{{reviewer_details[$index].points }} Points</strong>
+
+                                            </p>
+                                            <div class="attachment">
+                                                <i ng-if="review.rating>=1" class="fa text-yellow fa-lg fa-star"></i>
+                                                <i ng-if="review.rating>=1.5 && review.rating<2" class="fa text-yellow fa-lg fa-star-half"></i>
+                                                <i ng-if="review.rating>=2" class="fa text-yellow fa-lg fa-star"></i>
+                                                <i ng-if="review.rating>=2.5 && review.rating<3" class="fa text-yellow fa-lg fa-star-half"></i>
+                                                <i ng-if="review.rating>=3" class="fa text-yellow fa-lg fa-star"></i>
+                                                <i ng-if="review.rating>=3.5 && review.rating<4" class="fa text-yellow fa-lg fa-star-half"></i>
+                                                <i ng-if="review.rating>=4" class="fa text-yellow fa-lg fa-star"></i>
+                                                <i ng-if="review.rating>=4.5 && review.rating<5" class="fa text-yellow fa-lg fa-star-half"></i>
+                                                <i ng-if="review.rating>=5" class="fa text-yellow fa-lg fa-star"></i>
+
+
+                                                <p class="filename">
+                                                    <span class="text-muted" >{{ review.content }}</span>
+
+                                                </p>
+
+
+                                            </div>
+                                            <!-- /.attachment -->
+                                        </div>
+                                        <!-- /.item -->
+
+
+                                    </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 65px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 184.911px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                                    <!-- /.chat -->
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="tab-pane" id="provide-review" style="min-height: 300px;">
+                                <div class="box-header ui-sortable-handle">
+
+
+                                    <h3 class="box-title"> Add your Ratings</h3>
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div star-rating rating="starRating1" read-only="false" max-rating="5" click="click1(param)" mouse-hover="mouseHover1(param)" mouse-leave="mouseLeave1(param)"></div>
+                                    <div> <span class="label label-primary">Star Rating: {{starRating1}}</span>
+                                        <!--<span class="label label-primary">Hover Rating: {{hoverRating1}}</span>-->
+                                    </div>
+                                </div>
+                                <button ng-click="review_submit(0)" type="button" class="btn btn-flat btn-block btn-success btn-sm center-block btn-custom">SUBMIT RATINGS</button>
+
+
+                                <textarea ng-model="review_text" class="form-control textarea-size center-block" rows="8" placeholder="Let us know jow you feel.."></textarea>
+                                <a href="#provide-review"><p><span class="text-center center-block" style="font-size: 18px; margin-top: 10px;">Cancel </span></p></a>
+                                <button  ng-click="review_submit()"type="button" class="btn btn-flat btn-block btn-success btn-pink btn-sm center-block btn-custom">SUBMIT REVIEWS</button>
+
+
+
+                            </div>
+
+
+                        </div>
+                        <!-- /.tab-content -->
+                    </div>
+                    <!-- /.nav-tabs-custom -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <h2 class="similar-heading">Similar Designers</h2>
+
+            <div class="item active col-md-3" ng-click="$state.go('designer-profile', {id:similar.id})" ng-repeat= "similar in similars | limitTo: 4" >
+                <a ui-sref="designer-profile({id:designer.id})" >
+                    <div class="box box-primary designer-card" style="float: left">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive img-circle" ng-src="{{ similar.image_url }}" alt="User profile picture">
+
+                            <h3 class="profile-username text-center">{{ similar.name }}</h3>
+
+                            <p class="text-muted text-center"><i class="fa fa-fw fa-map-marker"></i>{{similar.location}}</p>
+
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item" style="height: 40px;" ng-hide="!similar.overall_rating">
+                                    <b><i ng-if="similar.overall_rating>=1" class="fa text-yellow fa-star fa-lg"></i>
+                                        <i ng-if="similar.overall_rating>=1.5 && similar.overall_rating<2" class="fa text-yellow fa-star-half fa-lg"></i>
+                                        <i ng-if="similar.overall_rating>=2" class="fa text-yellow fa-star fa-lg"></i>
+                                        <i ng-if="similar.overall_rating>=2.5 && similar.overall_rating<2" class="fa text-yellow fa-star-half fa-lg"></i>
+                                        <i ng-if="similar.overall_rating>=3" class="fa text-yellow fa-star fa-lg"></i>
+                                        <i ng-if="similar.overall_rating>=3.5 && similar.overall_rating<2" class="fa text-yellow fa-star-half fa-lg"></i>
+                                        <i ng-if="similar.overall_rating>=4" class="fa text-yellow fa-star fa-lg"></i>
+                                        <i ng-if="similar.overall_rating>=4.5 && similar.overall_rating<2" class="fa text-yellow fa-star-half fa-lg"></i>
+                                        <i ng-if="similar.overall_rating>=5" class="fa text-yellow fa-star fa-lg"></i>
+                                    </b>
+
+                                    <a class="pull-right">
+                                        {{ similar.rating }}
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>{{ similar.overall_rating }} Votes, {{ similar.reviews }} Reviews</b> <a class="pull-right"></a>
+                                </li>
+                            </ul>
+
+                            <a fb-shared designer="{{ designer }}" class="btn btn-block btn-social btn-facebook">
+                                <i class="fa fa-facebook"></i> Share on Facebook
+                            </a>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+
+
+
+        </section>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.content-wrapper -->

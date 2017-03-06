@@ -1,3 +1,6 @@
+html{
+	overflow-x: hidden;
+}
 .nav i{
  padding-right: 5px;
 
@@ -13,6 +16,7 @@
 	float: right !important;
 	margin-left: 530px;
 }
+
 .footer-list li{
 	list-style: none;
 }
@@ -31,9 +35,9 @@
 .main-footer{
 	padding: 0px !important;
 }
-.adjust{
-	padding-left: 110px;
-}
+/*.adjust{*/
+	/*padding-left: 92px;*/
+/*}*/
 .list-group{
 	margin-bottom: 10px !important;
 }
@@ -112,11 +116,11 @@
 }
 .info-box{
 	display: inline-block;
-	width: 250px;
+	/*width: 250px;*/
 	margin-right: 20px;
 }
 .info-box-icon {
-	font-size: 20px;
+	font-size: 16px;
 	
 }
 .space{
@@ -131,7 +135,7 @@
 	
 }
 .bg-aqua-custom{
-	background-color: #009f8b !important;
+	background-color: #bd2b64 !important;
 }
 .btn-custom{
 	margin-top: 10px;
@@ -167,7 +171,7 @@
   margin-top: -20px;
   
   padding: 90px;
-  background: url('dist/img/FAQ.jpg') center;
+  background: url(../img/useful-banner.jpg) center;
   background-repeat: no-repeat;
   color: white;
   background-size: cover;
@@ -228,11 +232,13 @@
 }
 .register-page{
 	margin-top: -30px;
-	overflow: hidden;
+	overflow: auto;
+	background-color: #ecf0f5 !important;
 }
 .login-page{
 	margin-top: -30px;
 	overflow: hidden;
+	background-color: #ecf0f5 !important;
 }
 .btn-custom{
 	margin-bottom: 20px;
@@ -322,10 +328,27 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 .designer-card{
 	width: 230px;
 	display: inline-block;
-	margin-right: 20px;
+	border-right: 1px solid #bec3c4;
+	border-left: 1px solid #bec3c4;
+	border-bottom: 1px solid c;
+
+	/*box-shadow: 1px 1px 2px #ABB4B8*/
+	/*margin-right: 20px;*/
+}
+.design-card-size{
+	margin-bottom: -10px;
+	border: 1px solid #bec3c4;
+
+}
+.design-card-potrait{
+	width: 225px !important;
+}
+.profile-user-img {
+	height: 100px;
 }
 .img-customm{
 	width: 300px;
+	height: 230px;
 }
 .list-inline{
 	margin-top:  10px !important;
@@ -336,9 +359,17 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 }
 .reviewer-card{
 	margin-bottom: -10px !important;
+	border: 1px solid #bec3c4;
+
+
+}
+.reviewer-card-potrait{
+	width: 225px !important;
+
 }
 .pane-size{
 	/*height: 400px;*/
+	/*padding-left:30px !important;*/
 }
 .similar-heading{
 	margin-bottom: 20px;
@@ -346,23 +377,29 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 .designer-content{
 	background-color: white;
 	margin-top: 50px;
-	
+	min-height: 150px;
 	border-radius: 3px;
 
-	
+
+}
+.filter{
+	margin-top: 20px;
+}
+.filter.options{
+	margin-bottom: 20px;
 }
 
 .btn-default{
-	
+
 	float: left;
 	color: white;
-	
+
 }
 .drop{
 	margin-top: 30px;
-	
+	margin-bottom: 20px;
 	display: inline-block;
-	
+
 }
 .mid-head{
 	margin-top: 70px;
@@ -374,11 +411,11 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 	height: 220px;
 }
 .collection-card{
-	border: 1px solid #ecf0f5;
-	box-shadow: 1px 1px 5px #ABB4B8;
-	padding-bottom: -10px !important;
-	float: left;
-	margin-top: 10px;
+	/*border: 1px solid #ecf0f5;*/
+	box-shadow: 1px 1px -3px #ABB4B8;
+	/*padding-bottom: -10px !important;*/
+	/*float: left;*/
+	/*margin-top: 10px;*/
 	
 
 }
@@ -393,7 +430,7 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 
 }
 .heading-margin{
-	margin-top: 70px;
+	margin-top: 50px;
 }
 .heading-btn{
 	float: right;
@@ -430,3 +467,110 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 .user-box{
 	border-top-color: #bd2b64 !important;
 }
+.modal{
+	margin-top: 40px;
+	height: 500px !important;
+	background-color: white;
+}
+.
+.tab-event{
+	width:46% !important;
+	display: inline-block;
+	padding-right:10px;
+}
+.choose-file{
+	width:65%;
+	height:240px;
+	padding:10px;
+	padding-bottom:30px !important;
+	/*background-color: #00acd6;*/
+	margin-bottom:10px;
+	border:2px dashed #9A9FA1;
+}
+.choose-file-inner{
+	/*background-color: #bd2b64;*/
+	width:100%;
+	height:100%;
+	border: 2px dashed #9A9FA1;
+}
+.chat .item {
+	margin-bottom: 25px !important;
+}
+#applyFilterlink{
+	display: none;
+}
+.nav-stacked>li.active>a, .nav-stacked>li.active>a:hover {
+	background: transparent;
+	color: #444;
+	border-top: 0;
+	border-left-color: #bd2b64;
+}
+.box-title-collapsed{
+	margin-top: 0 !important;
+}
+
+@media (max-width: 768px) {
+	.header-right-side {
+		float: left !important;
+		margin-left: 10px;
+		margin-top: -5px;
+	}
+	.choose-file{
+	margin-top: 40px !important;
+		margin-bottom:10px;
+	}
+	html{
+		overflow-x: hidden;
+	}
+.filter-options{
+	margin-top:10px;
+}
+.drop{
+	margin-top: 10px;
+}
+	#clearFilterBtn, #filterDiv {
+		display: block;
+
+	}
+	#applyFilterlink{
+		display: block;
+
+	}
+	.footer-list{
+		margin-left: -15px;
+	}
+	.profile-tabs-collapse{
+		display: block !important;
+	}
+	.profile-tabs-show{
+		display: none;
+	}
+	.designer-card{
+		margin-right: 20px !important;
+
+	}
+
+
+}
+@media (min-width: 768px){
+	.adjust{
+		padding-left: 0;
+		text-align: center;
+	}
+	.footer-list{
+		margin-left: -35px;
+	}
+.profile-tabs-show{
+	display: block;
+}
+
+
+
+}
+@media (max-width: 1200px){
+	#clearFilterBtn, #filterDiv {
+		display: none;
+	}
+}
+
+

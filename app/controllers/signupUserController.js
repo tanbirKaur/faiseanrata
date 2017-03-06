@@ -14,8 +14,8 @@ app.controller("signupUserController", ['toastr', '$scope', '$http', '$window', 
          //    formdata.append("target", "user");
          //    formdata.append("id", "1");
             $scope.getTheFiles = function ($files) {
-              console.log("files");
-              console.log($files[0].name);
+              // console.log("files");
+              // console.log($files[0].name);
 
                 angular.forEach($files, function (value, key) {
                     formdata.append(key, value);
@@ -33,19 +33,19 @@ app.controller("signupUserController", ['toastr', '$scope', '$http', '$window', 
                     }
                 };
 
-                console.log(request);
+                // console.log(request);
 
                 // SEND THE FILES.
                 $http(request)
                     .success(function (response1) {
-                      console.log("success uploading image",response1.result.files[0][0].providerResponse.location);
+                      // console.log("success uploading image",response1.result.files[0][0].providerResponse.location);
                       setTimeout(function(){
                         $window.location.href = "/login";
                       }, 1500);
                     })
                     .error(function (err) {
-                      console.log("error in uploading image");
-                      console.log(err);
+                      // console.log("error in uploading image");
+                      // console.log(err);
                     });
             };
 
@@ -66,18 +66,18 @@ app.controller("signupUserController", ['toastr', '$scope', '$http', '$window', 
       "location" : String($scope.location),
 			};
 
-			console.log($scope.data);
+			// console.log($scope.data);
 
 		$http.post(appConstants.apiUrl + "Clients/", $scope.data)
 			.then(function(response){
-				console.log(response);
-				console.log("Succesfully registered form_data");
+				// console.log(response);
+				// console.log("Succesfully registered form_data");
 				uploadFiles(response);
 				toastr.success("Succesfully Registered");
 			},
 			function(err){
-				console.log("error 2");
-				console.log(err);
+				// console.log("error 2");
+				// console.log(err);
 				toastr.error("Error Occured");
 			});
 	};

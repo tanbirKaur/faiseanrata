@@ -1,0 +1,61 @@
+<script type="text/javascript">
+
+$(document).ready(function() {
+$('.fancybox').fancybox();
+});
+</script>
+<!--<script src="vendor/jQuery/jquery-2.2.3.min.js"></script>-->
+<div class="content-wrapper" style="min-height: 402px;">
+    <div class="container">
+
+        <section class="content event-content">
+            <div class="row ">
+
+                <!--<div ng-init="check_like($index)" class="item col-md-4" ng-repeat= "design in designs" style=" display:inline-block;">-->
+                    <!--&lt;!&ndash;<a ui-sref="collection({collectionId:collection.id})" data-toggle="modal" data-target="#pop-up">&ndash;&gt;-->
+                        <!--<div class="box box-primary design-card-potrait collection-card" style="border-top: none !important;">-->
+                            <!--<div class="box-body box-profile design-card-size">-->
+                                <!--<img class="img-customm img-responsive" ng-init="get_collection_pic(collection.id, $index)" src="{{ image_id[$index] }}" alt="User profile picture">-->
+                                <!--<ul class="list-group list-group-unbordered">-->
+
+
+                                    <!--<ul class="list-inline text-center">-->
+                                        <!--<b>{{ design.title }}</b>-->
+
+                                    <!--</ul>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                <!--</div>-->
+
+
+
+
+                <div ng-init="check_like($index)" class="item  card-spacing" ng-repeat="design in designs"  style=" display:inline-block;">
+
+                    <div class="box box-primary design-card-potrait">
+                        <div class="box-body box-profile design-card-size">
+                            <a data-fancybox="images" href="{{design.image_url}}"> <img   class="img-customm img-responsive " ng-src="{{design.image_url}}" alt="User profile picture"></a>
+
+                            <ul class="list-inline text-center" style="border-bottom: none;">
+                                <li><a href="#" class=" text-sm"><i class="fa fa-thumbs-o-up fa-lg margin-r-5"></i>{{ design.likes }}</a></li>
+                                <li ><a fb-shared design="{{ design }}" class=" text-sm" style="cursor:pointer;"><i class="fa fa-share-alt fa-lg margin-r-5"></i> Share</a></li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,52 @@
+<div class="content-wrapper" style="">
+
+    <!-- Content Header (Page header) -->
+    <div class="back pp">
+        <h1 class="text-center"><span>Contact Us</span></h1>
+
+    </div>
+    <section class="content-header" style="background-color: white;">
+        <ul class="center-list">
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/privacy_policy">Privacy Policies</a></li>
+            <li class="active-custom"><a href="/contact_us">Contact Us</a></li>
+            <li><a href="/how-it-works">How It Works?</a></li>
+
+        </ul>
+
+
+    </section>
+    <div class="container">
+        <!-- Main content -->
+        <section class="content">
+            <div class="col-md-6 col-md-offset-3">
+                <h2 class="text-center" style="color: #444545;">Contact Us</h2>
+                <div class="form-group">
+                    <label for="login-form-name">Name</label>
+                    <input ng-model="name" type="email" class="form-control" id="login-form-name" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="login-form-email">Email</label>
+                    <input ng-model="email" type="email" class="form-control" id="login-form-email" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="login-form-subject">Subject</label>
+                    <input ng-model="subject" type="email" class="form-control" id="login-form-subject" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label >Message</label>
+                    <textarea ng-model="msg" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+                <button ng-click="contact_submit()" type="button" class="btn btn-block btn-block-custom btn-info center-block">Submit</button>
+                <br>
+                <br>
+
+
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.content-wrapper -->
