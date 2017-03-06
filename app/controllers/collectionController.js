@@ -3,7 +3,7 @@ app.controller('collectionController', ['$stateParams', 'toastr', '$rootScope', 
 
 
         $scope.modal_show = function(id){
-            console.log("Hello");
+            // console.log("Hello");
             $("#myModal" + id).toggle();
         };
 
@@ -11,10 +11,10 @@ app.controller('collectionController', ['$stateParams', 'toastr', '$rootScope', 
             $http.get(appConstants.apiUrl + "Collections/" + $stateParams.collectionId + "/designs")
                 .then(function(response){
                     $scope.designs = response.data;
-                    console.log(response);
-                    console.log("success fetching image");
+                    // console.log(response);
+                    // console.log("success fetching image");
                 }, function(err){
-                    console.log("Error fetching image");
+                    // console.log("Error fetching image");
                 });
 
         };
@@ -34,24 +34,24 @@ app.controller('collectionController', ['$stateParams', 'toastr', '$rootScope', 
 
             $http.post(appConstants.apiUrl + "Designs/like", data)
                 .then(function(response){
-                    console.log(data);
+                    // console.log(data);
                     get_collection();
-                    console.log("Liked Design Successfully");
+                    // console.log("Liked Design Successfully");
                 }, function(err){
-                    console.log("Error in liking design");
-                    console.log(err);
+                    // console.log("Error in liking design");
+                    // console.log(err);
                 });
         };
 
         $scope.liked = [];
 
         $scope.check_like = function(index){
-            console.log("index", index);
+            // console.log("index", index);
             if($scope.designs[index].likers.external.indexOf(parseInt($window.localStorage['userId'])) >=0 || $scope.designs[index].likers.reviewer.indexOf(parseInt($window.localStorage['userId'])) >=0)
             {
                 $scope.liked[index] = true;
-                console.log("index", index);
-                console.log("liked", true);
+                // console.log("index", index);
+                // console.log("liked", true);
             }
         };
 
@@ -63,9 +63,9 @@ app.controller('collectionController', ['$stateParams', 'toastr', '$rootScope', 
                     this.title += '<br />';
 
                     // Add tweet button
-                    console.log("Get index");
+                    // console.log("Get index");
                     var index = this.element[0].attributes[0].value;
-                    console.log(index);
+                    // console.log(index);
                     $rootScope.new = "Hello";
                     this.title += '';
 
@@ -85,7 +85,7 @@ app.controller('collectionController', ['$stateParams', 'toastr', '$rootScope', 
         });
 
         $rootScope.test1 = function(){
-            console.log("Hello");
+            // console.log("Hello");
         };
 
 

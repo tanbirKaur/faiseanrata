@@ -309,7 +309,7 @@ app.controller('designerProfileController', ['$rootScope', 'toastr', '$scope', '
 				// console.log("Erro fetching image");
 			});
 
-		console.log($scope.image_id[index], "image_id");
+		// console.log($scope.image_id[index], "image_id");
 	};
 
 }]);

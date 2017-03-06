@@ -1,33 +1,33 @@
 app.controller("userProfileController", ['toastr', '$scope', '$window', '$http', 'appConstants', 'authService', function(toastr, $scope, $window, $http, appConstants, authService){
 
 	if('access_token' in $window.localStorage)
-		console.log("Access");
+		// console.log("Access");
 	else
 		$window.location.href = "/";
 	
 	if('type' in $window.localStorage){
 		$http.get(appConstants.apiUrl + 'Externals?filter[where][uid]='+$window.localStorage['id'])
 		.then(function(response){
-			console.log("Success", response.data[0]);
+			// console.log("Success", response.data[0]);
 			$scope.reviewer = response.data[0];
 			$scope.reviewer_email = JSON.parse($window.localStorage.currentUser).email;
-			console.log($scope.reviewer_email);
+			// console.log($scope.reviewer_email);
 		}, function(err){
-			console.log("error", err);
-			console.log(err);
+			// console.log("error", err);
+			// console.log(err);
 		});
 	}
 
 	else{
 		$http.get(appConstants.apiUrl + "Reviewers/" + $window.localStorage.userId)
 		.then(function(response){
-			console.log("Success", response.data);
+			// console.log("Success", response.data);
 			$scope.reviewer = response.data;
 			$scope.reviewer_email = JSON.parse($window.localStorage.currentUser).email;
-			console.log($scope.reviewer_email);
+			// console.log($scope.reviewer_email);
 		}, function(err){
-			console.log("error", err);
-			console.log(err);
+			// console.log("error", err);
+			// console.log(err);
 		});
 	}
 
@@ -50,10 +50,10 @@ app.controller("userProfileController", ['toastr', '$scope', '$window', '$http',
 
 		$http.get(appConstants.apiUrl + user + $window.localStorage.userId + '/reviews?filter={"where":{"approved":1}, "order": "timestamp desc"}')
 			.then(function(response){
-				console.log("success", response.data);
+				// console.log("success", response.data);
 				$scope.reviews = response.data;
 			},function(err){
-				console.log("err", err);
+				// console.log("err", err);
 			});
 	};
 
@@ -61,10 +61,10 @@ app.controller("userProfileController", ['toastr', '$scope', '$window', '$http',
 		$scope.designer_details = [];
 		$http.get(appConstants.apiUrl + "Designers/" + designerId)
 			.then(function(response){
-				console.log("Success", response.data);
+				// console.log("Success", response.data);
 				$scope.designer_details[index] = response.data;
 			}, function(err){
-				console.log("error", err);
+				// console.log("error", err);
 			});
 	};
 
@@ -78,8 +78,8 @@ app.controller("userProfileController", ['toastr', '$scope', '$window', '$http',
          //    formdata.append("target", "user");
          //    formdata.append("id", "1");
             $scope.getTheFiles = function ($files) {
-              console.log("files");
-              console.log($files[0].name);
+              // console.log("files");
+              // console.log($files[0].name);
 
                 angular.forEach($files, function (value, key) {
                     formdata.append(key, value);
@@ -112,17 +112,17 @@ app.controller("userProfileController", ['toastr', '$scope', '$window', '$http',
                     }
                 };
 
-                console.log(request);
+                // console.log(request);
 
                 // SEND THE FILES.
                 $http(request)
                     .success(function (response1) {
-                      console.log("success uploading image",response1.result.files[0][0].providerResponse.location);
+                      // console.log("success uploading image",response1.result.files[0][0].providerResponse.location);
 
                     })
                     .error(function (err) {
-                      console.log("error in uploading image");
-                      console.log(err);
+                      // console.log("error in uploading image");
+                      // console.log(err);
                     });
             };
 
@@ -131,19 +131,19 @@ app.controller("userProfileController", ['toastr', '$scope', '$window', '$http',
 
 
 	$scope.save_changes = function(){
-		console.log($scope.reviewer );
-		console.log("PUT");
+		// console.log($scope.reviewer );
+		// console.log("PUT");
 		if("type" in $window.localStorage)
 		{
 			$http.put(appConstants.apiUrl + "Externals/" + $window.localStorage.userId, $scope.reviewer)
 				.then(function(response){
-					console.log("scucces in changing data");
-					console.log(response);
+					// console.log("scucces in changing data");
+					// console.log(response);
 					toastr.success("Successfully edited data");
 					uploadFiles(response);
 				}, function(err){
-					console.log("err in put");
-					console.log(err);
+					// console.log("err in put");
+					// console.log(err);
 				});
 		}
 
@@ -151,13 +151,13 @@ app.controller("userProfileController", ['toastr', '$scope', '$window', '$http',
 		{
 			$http.put(appConstants.apiUrl + "Reviewers/" + $window.localStorage.userId, $scope.reviewer)
 				.then(function(response){
-					console.log("scucces in changing data");
-					console.log(response);
+					// console.log("scucces in changing data");
+					// console.log(response);
 					toastr.success("Successfully edited data");
 					uploadFiles(response);
 				}, function(err){
-					console.log("err in put");
-					console.log(err);
+					// console.log("err in put");
+					// console.log(err);
 				});
 		}
 	};

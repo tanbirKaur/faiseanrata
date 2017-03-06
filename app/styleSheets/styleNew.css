@@ -563,6 +563,9 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 .profile-tabs-show{
 	display: block;
 }
+.footer-list{
+	margin-left:0px !important;
+}
 
 
 
@@ -570,6 +573,22 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 @media (max-width: 1200px){
 	#clearFilterBtn, #filterDiv {
 		display: none;
+	}
+}
+@media(width: 768px){
+	.footer-list
+	{
+		padding-left: 0 !important;
+
+	}
+	.header-right-side{
+		margin: 0 !important;
+	}
+
+}
+@media (width: 1024px){
+	.footer-list{
+		padding-left: 20px !important;
 	}
 }
 
