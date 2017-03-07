@@ -7,10 +7,10 @@ app.controller('resetController', ['$stateParams', 'toastr', '$rootScope', '$sco
 
       $http.post(appConstants.apiUrl+"/Clients/reset", data)
         .then(function(response){
-          // console.log(response);
+
           toastr.info("Reset link sent to email");
         }, function(error){
-          // console.log(error);
+
           toastr.error("Error in sending reset link."+error.data.error.message);
         });
 

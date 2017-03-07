@@ -229,8 +229,7 @@
                                     <a  data-fancybox="images"  href="{{design.image_url}}"> <img   class="img-customm img-responsive  " ng-src="{{design.image_url}}" alt="User profile picture"></a>
 
                                     <ul class="list-inline text-center" style="border-bottom: none;">
-                                            <!--<li><a href="#" class=" text-sm"><i class="fa fa-thumbs-o-up fa-lg margin-r-5"></i>{{ design.likes }}</a></li>-->
-                                            <!--<li ><a fb-shared design="{{ design }}" class=" text-sm" style="cursor:pointer;"><i class="fa fa-share-alt fa-lg margin-r-5"></i> Share</a></li>-->
+
                                         <li><a class="btn btn-primary btn-xs" style="background-color: #4267b2"><i class="fa fa-thumbs-up  margin-r-5" style="color: white;;"></i>LiKe &nbsp{{ design.likes }}</a></li>
                                         <li><a fb-shared design="{{ design }}" class="btn btn-primary btn-xs" style="background-color: #4267b2">Share</a></li>
 
@@ -252,7 +251,7 @@
                 <div class="item flexslider">
                     <ul class="slides">
 
-                        <li class=" active " ng-repeat="design in recent_designs" ">
+                        <li class=" active " ng-repeat="design in recent_designs" >
 
                                 <div class="box box-primary design-card-potrait">
                                     <div class="box-body box-profile design-card-size inner-card-spacing">

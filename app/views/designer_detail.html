@@ -120,9 +120,11 @@
                                 <div class="box-body" style="display: block;">
                                     <div class="box-footer no-padding">
                                         <ul class="nav nav-stacked">
-                                            <li class="active"><a target="_blank" href="#profile" data-toggle="tab"><i class="fa fa-user margin-r-5"></i>Profile</a></li>
-                                            <li><a ng-click="get_collections()" target="_blank" href="#collections" data-toggle="tab"><i class="fa fa-list margin-r-5"></i>Collections</a></li>
+                                            <li class="active"><a ng-init="get_collections()" ng-click="get_collections()" ng-load="get_collection()" target="_blank" href="#collections" data-toggle="tab"><i class="fa fa-list margin-r-5"></i>Collections</a></li>
+
+
                                             <li class=""><a target="_blank" ng-click="get_events()" href="#events" data-toggle="tab"><i class="fa fa-calendar margin-r-5"></i>Events</a></li>
+                                            <li ><a target="_blank" href="#profile" data-toggle="tab"><i class="fa fa-user margin-r-5"></i>Profile</a></li>
                                             <li class=""><a target="_blank" ng-click="get_reviews()" href="#reviews" data-toggle="tab"><i class="fa fa-star margin-r-5"></i>Reviews</a></li>
                                             <li class=""><a ng-click="get_submit_review()" target="_blank" href="#provide-review" data-toggle="tab"><i class="fa fa-flag margin-r-5"></i>Provide Review</a></li>
                                         </ul>
@@ -137,14 +139,16 @@
 
 
                         <ul class="nav nav-tabs profile-tabs-show ">
-                            <li class="active"><a target="_blank" href="#profile" data-toggle="tab"><i class="fa fa-user margin-r-5"></i>Profile</a></li>
-                            <li><a ng-click="get_collections()" target="_blank" href="#collections" data-toggle="tab"><i class="fa fa-list margin-r-5"></i>Collections</a></li>
+                            <li class="active"><a ng-init="get_collections()" ng-click="get_collections()" ng-load="get_collection()" target="_blank" href="#collections" data-toggle="tab"><i class="fa fa-list margin-r-5"></i>Collections</a></li>
+
+
                             <li class=""><a target="_blank" ng-click="get_events()" href="#events" data-toggle="tab"><i class="fa fa-calendar margin-r-5"></i>Events</a></li>
+                            <li ><a target="_blank" href="#profile" data-toggle="tab"><i class="fa fa-user margin-r-5"></i>Profile</a></li>
                             <li class=""><a target="_blank" ng-click="get_reviews()" href="#reviews" data-toggle="tab"><i class="fa fa-star margin-r-5"></i>Reviews</a></li>
                             <li class=""><a ng-click="get_submit_review()" target="_blank" href="#provide-review" data-toggle="tab"><i class="fa fa-flag margin-r-5"></i>Provide Review</a></li>
                         </ul>
                         <div class="tab-content pane-size">
-                            <div class="tab-pane active" id="profile" style="min-height: 300px;" >
+                            <div class="tab-pane" id="profile" style="min-height: 300px;" >
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div ng-if="!data.desc"><h5>No Description right now..</h5></div>
@@ -156,21 +160,19 @@
 
                                 </div>
 
-                                <!--<textarea class="form-control" rows="3" placeholder="" disabled="">-->
-                                    <!--{{ data.desc }}-->
-                                <!--</textarea>-->
+
 
                             </div>
 
 
-                            <div class="tab-pane" id="collections" style="min-height: 300px;">
+                            <div class="tab-pane active" id="collections" style="min-height: 300px;">
                                 <div class="row ">
 
                             <div class="item " ng-repeat= "collection in collections" style=" display:inline-block;  margin-left: 20px; margin-bottom: 20px;">
                                 <a ui-sref="collection({collectionId:collection.id})">
                                     <div class="box box-primary design-card-potrait collection-card" style="border-top: none !important;">
                                         <div class="box-body box-profile design-card-size">
-                                            <img class="img-customm img-responsive" ng-init="get_collection_pic(collection.id, $index)" src="{{ image_id[$index] }}" alt="User profile picture">
+                                            <img class="img-customm img-responsive" ng-init="get_collection_pic(collection.id, $index)" src="{{ image_id[$index] }}" alt="Collection Picture">
                                             <ul class="list-group list-group-unbordered">
 
 
@@ -186,38 +188,18 @@
                         </div>
                         </div>
 
-                            <!--<div class="tab-pane" id="collections">-->
-                                <!--<div class="row ">-->
-                                    <!--<div class="col-md-4" ng-repeat= "collection in collections">-->
-                                        <!--<div class="item">-->
-                                            <!--<div class="designer-card collection-card">-->
-                                                <!--<div class="box-body box-profile col-card-height">-->
-                                                    <!--<img class="img-customm img-responsive design-card " ng-init="get_collection_pic(collection.id, $index)" src="{{ image_id[$index] }}" alt="User profile picture">-->
-                                                    <!--<ul class="list-group list-group-unbordered">-->
-                                                        <!--<li class="list-group-item  text-center unborder ">-->
-                                                            <!--<b>{{ collection.name }}</b>-->
-                                                        <!--</li>-->
-
-                                                    <!--</ul>-->
-                                                <!--</div>-->
-                                                <!--&lt;!&ndash; /.box-body &ndash;&gt;-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-
-                                   <!---->
-                                <!--</div>-->
-
-
-                            <!--</div>-->
 
                             <div class="tab-pane" id="events" style="min-height:300px;">
-                                <div class="tab-event" ng-if="!events[0]" style="min-height: 300px"><h5 style="opacity: 0.8;">No Events right now..</h5></div>
+                                <div class="tab-event" ng-if="!events[0]" style="min-height: 300px"><h5 style="opacity: 0.8;">No upcoming events right now..</h5></div>
                               <div class="row">
 
                                 <div class="tab-event col-md-6" ng-repeat="event in events">
                                 <div class="info-box">
-                                    <span class="info-box-icon bg-aqua bg-aqua-custom">{{ event.timestamp | date:'dd' }} {{ event.timestamp | date:'MMMM' }}</span>
+                                    <div class="event-date">
+                                        <span class="day ng-binding">{{ event.timestamp | date:'dd' }}</span>
+                                        <span class="month ng-binding">{{ event.timestamp | date:'MMMM' }}</span>
+                                    </div>
+                                    <!--<span class="info-box-icon bg-aqua bg-aqua-custom">{{ event.timestamp | date:'dd' }} {{ event.timestamp | date:'MMMM' }}</span>-->
 
                                     <div class="info-box-content">
                                         <span class="info-box-text"><strong>{{ event.name }}</strong></span>
@@ -243,7 +225,7 @@
 
                                     </div>
                                     <div class="slimScrollDiv" style="position: relative; overflow: auto; width: auto; height: 400px;"><div class="box-body chat" id="chat-box" style="overflow: auto; width: auto; height: 400px;">
-                                        <div ng-if="!reviews[0]"><h5 style="opacity: 0.8;">No reviews yet.. Write one on clicking button above</h5></div>
+                                        <div ng-if="!reviews[0]"><h5 style="opacity: 0.8;">No reviews yet.. Be the first one to write a review</h5></div>
 
                                         <!-- chat item -->
                                         <div class="item" data-ng-init="get_reviewer_data(review.reviewerId, review.externalId, $index)" ng-repeat="review in reviews">

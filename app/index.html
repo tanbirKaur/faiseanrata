@@ -16,36 +16,34 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
     <script src="https://apis.google.com/js/client.js?onload=googleOnLoadCallback"></script>
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!--<link rel="stylesheet" href="styleSheets/jquery.fancybox.css">-->
+
     <link rel="stylesheet" href="vendor/iCheck/square/blue.css">
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="styleSheets/UsefulLinks.css" type="text/css" media="screen" />-->
+
     <link rel="stylesheet" href="vendor/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="vendor/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" type="text/css" href="styleSheets/styleNew.css">
     <link rel="stylesheet" href="vendor/flexslider/flexslider.css" type="text/css" media="screen" />
-    <!--<link rel="stylesheet" href="styleSheets/lightslider.css" type="text/css" media="screen" />-->
-    <!--fancybox thing..-->
+
+
     <link rel="stylesheet" href="vendor/fancybox/dist/jquery.fancybox.css" media="screen"/>
     <script type="text/javascript" src="vendor/fancybox/dist/jquery.fancybox.js"/>
 
 
     <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
-    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">-->
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>-->
+
 
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleOnLoadCallback"></script>
 
-    <!--<script src="vendor/jquery.fancybox.js"></script>-->
+
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--<script src="vendor/lightslider.js"></script>-->
-    <!--<script src="http://code.angularjs.org/1.2.13/angular.js"></script>-->
+
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
-    <!--<script src="vendor/jQuery/jquery-2.2.3.min.js"></script>-->
+
     <script src="vendor/iCheck/icheck.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
     <script type="text/javascript" src="app.js"></script>
@@ -54,27 +52,34 @@
 
   <body ng-app="faiseanrata" class="skin-blue layout-top-nav">
   <div id="main-wrapper" class="">
-
     <header class="main-header">
       <nav class="navbar navbar-static-top">
         <div class="container">
           <div class="navbar-header">
-            <a href="/home"><img src="img/logo.png" class="brand-logo"></a>
-
+            <a href="/"><img src="img/logo.png" class="brand-logo"></a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
               <i class="fa fa-bars"></i>
             </button>
           </div>
-
-
           <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
             <ul class="nav navbar-nav">
-
               <li><a ui-sref="designers({keyword:''})"><i class="fa fa-fw fa-briefcase"></i>Designers</a></li>
               <li><a ui-sref="events"><i class="fa fa-fw fa-calendar"></i>Events</a></li>
             </ul>
             <ul class=" nav navbar-nav header-right-side" style="float: right;">
-              <li><a ui-sref="login">Login</a></li>
+                <script type="text/javascript">
+                    if('access_token' in localStorage)
+                    {
+                        $("#new").html("<li><a ui-sref='user-profile-edit'>Profile</a></li><li><a href='/logout'>Logout</a></li>");
+
+                    }
+                    else
+                    {
+                        $("#new").html("<li><a href='/login'>Login</a></li><li><a href='/register'>Register</a></li>");
+                    }
+                </script>
+              <li ><a ui-sref="login">Login</a></li>
+              <li style="line-height: 50px; vertical-align: middle;" class="unwanted-border"><span style="border-right: 1px solid lightgrey;"></span></li>
               <li><a ui-sref="register">Register</a></li>
             </ul>
           </div>
@@ -84,91 +89,41 @@
 
     <h1 style="margin:auto;position:relative;top:50%;left:40%;" class="page-loading"><br><br><br><br><br><br>Loading...<br><br><br><br><br><br><br></h1>
   <div ui-view  autoscroll="true" id="ui-view"></div>
-
     <footer class="main-footer">
       <div class="container">
         <div class="row">
           <div class="col-md-3 col-md-offset-1 col-xs-6 col-xs-offset-3 col-sm-offset-1 col-sm-3">
-
             <ul class="footer-list ">
               <li><h3>Browse</h3></li>
               <a ui-sref="designers({keyword:''})"><li>Browse Designers</li></a>
               <a href="/events"><li>Browse Events</li></a>
             </ul>
-
           </div>
           <div class="col-md-3 col-md-offset-1 col-xs-6 col-xs-offset-3 col-sm-offset-1 col-sm-3">
-
             <ul class="footer-list ">
-              <li><h3>Legal</h3></li>
+              <li><h3>Useful Links</h3></li>
+              <li><a href="/about_us"><span> About Us </span></a></li>
               <li><a href="/faq"><span>  FAQ </span></a></li>
               <li><a href = "/privacy_policy"><span>  Privacy Policy </span></a></li>
               <li><a href = "/contact_us"><span>  Contact Us </span></a></li>
               <li><a href = "/how-it-works"><span>  How It Works </span></a></li>
-
+              <li><a href="/terms-and-conditions"><span> Terms & Conditions </span></a></li>
             </ul>
-
           </div>
           <div class="col-md-3 col-md-offset-1 col-xs-6 col-xs-offset-3 col-sm-offset-1 col-sm-3">
-
             <ul class="footer-list">
               <li><h3>Connect us</h3></li>
               <a href="#"><li>+91-9717255668</li></a>
               <a href="#"><li>hello@faiseanrata.com</li></a>
             </ul>
-
           </div>
         </div>
       </div>
       <!-- /.container -->
       <div class="last-part">
         <span class="center-block">© 2016 Faisean Ráta</span>
-
       </div>
     </footer>
-
-    <!--<footer class="main-footer">-->
-      <!--<div class="container">-->
-        <!--<div class="col-md-4 col-xs-12 col-sm-12">-->
-
-          <!--<ul class="footer-list col-xs-offset-2 col-sm-offset-4 ">-->
-            <!--<li><h3>Browse</h3></li>-->
-            <!--<a ui-sref="designers({keyword:''})"><li>Browse Designers</li></a>-->
-            <!--<a href="/events"><li>Browse Events</li></a>-->
-          <!--</ul>-->
-
-        <!--</div>-->
-        <!--<div class="col-md-4  col-xs-12 col-sm-12 ">-->
-
-          <!--<ul class="footer-list col-xs-offset-2 col-sm-offset-4 ">-->
-            <!--<li><h3>Legal</h3></li>-->
-            <!--<li><a href="/faq"><span>  FAQ </span></a></li>-->
-            <!--<li><a href = "/privacy_policy"><span>  Privacy Policy </span></a></li>-->
-            <!--<li><a href = "/contact_us"><span>  Contact Us </span></a></li>-->
-            <!--<li><a href = "/how-it-works"><span>  How It Works </span></a></li>-->
-
-          <!--</ul>-->
-
-        <!--</div>-->
-        <!--<div class="col-md-4 col-xs-12  col-sm-12 ">-->
-
-          <!--<ul class="footer-list  col-xs-offset-2 adjust  ">-->
-            <!--<li><h3>Connect us</h3></li>-->
-            <!--<a href="#"><li>+91-9717255668</li></a>-->
-            <!--<a href="#"><li>hello@faiseanrata.com</li></a>-->
-          <!--</ul>-->
-
-        <!--</div>-->
-
-      <!--</div>-->
-      <!--&lt;!&ndash; /.container &ndash;&gt;-->
-      <!--<div class="last-part">-->
-        <!--<span class="center-block">© 2016 Faisean Ráta</span>-->
-
-      <!--</div>-->
-    <!--</footer>-->
-    <!--my footer ends -->
-
   </div>
 
 
@@ -196,7 +151,6 @@
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="vendor/dist/js/app.min.js"></script>
   <script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
-  <!--<script src="vendor/modernizr.js"></script>-->
   <script  src="vendor/flexslider/jquery.flexslider.js"></script>
 
   </body>

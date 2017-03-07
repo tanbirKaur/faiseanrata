@@ -190,7 +190,7 @@ html{
   list-style: none;
   display: inline-block;
   margin-right: 60px;
-  margin-left: 60px;
+  margin-left: 30px;
   font-weight: 700px;
   font-size: 20px;
 
@@ -509,6 +509,24 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 	margin-top: 0 !important;
 }
 
+.event-date {
+	background-color:#cd2969;
+	color: #fff;
+	float: left;
+	margin: 0px 30px 0px 0px;
+	padding: 10px;
+	min-width:90px;
+	min-height:90px;
+}
+.event-date span.day {
+	font-size: 24px;
+}
+
+.event-date span {
+	display: block;
+	text-align: center;
+}
+
 @media (max-width: 768px) {
 	.header-right-side {
 		float: left !important;
@@ -549,6 +567,9 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 		margin-right: 20px !important;
 
 	}
+	.unwanted-border{
+		display: none !important;
+	}
 
 
 }
@@ -559,6 +580,9 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 	}
 	.footer-list{
 		margin-left: -35px;
+	}
+	.unwanted-border{
+		display: none;
 	}
 .profile-tabs-show{
 	display: block;
@@ -584,12 +608,27 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 	.header-right-side{
 		margin: 0 !important;
 	}
+	.profile-tabs-show{
+		display: none;
+	}
 
 }
 @media (width: 1024px){
 	.footer-list{
 		padding-left: 20px !important;
 	}
+	#clearFilterBtn, #filterDiv {
+		display: block;
+
+	}
+	#applyFilterlink{
+		display: none;
+
+	}
+	.designer-card{
+		margin-right: 10px !important;
+	}
+
 }
 
 

@@ -4,8 +4,7 @@ app.controller('eventsController', ['$stateParams', 'toastr', '$rootScope', '$sc
 
         $http.get(appConstants.apiUrl + 'Events?filter={"order":"timestamp asc"}')
             .then(function(response){
-                // console.log("Fetched Events");
-                // console.log(response.data);
+
                 $scope.events = response.data;
 
                 for(var i=0;i<$scope.events.length;i++){
@@ -14,7 +13,7 @@ app.controller('eventsController', ['$stateParams', 'toastr', '$rootScope', '$sc
 
 
             }, function(err){
-                // console.log("err in events");
+
             });
 
         var get_designer_name = function(designerId, i){
@@ -24,7 +23,7 @@ app.controller('eventsController', ['$stateParams', 'toastr', '$rootScope', '$sc
                     name = response.data.name;
                     $scope.events[i].designerName = name;
                 }, function(err){
-                    // console.log(err);
+
                 });
         };
     }]);

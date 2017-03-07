@@ -6,15 +6,17 @@
             <div class="col-md-4 col-xs-12" ng-repeat="event in events" style="margin-bottom: 15px;">
 
             <div class="info-box"  >
-                <span class="info-box-icon bg-aqua bg-aqua-custom" style="height: 103px; line-height: 103px;">{{ event.timestamp | date:'dd' }} {{ event.timestamp | date:'MMMM' }}</span>
-                <!--<p> {{ event.timestamp | date:'MMMM' }}</p>-->
+                <div class="event-date">
+                    <span class="day ">{{ event.timestamp | date:'dd' }}</span>
+                    <span class="month ">{{ event.timestamp | date:'MMMM' }}</span>
+                </div>
+
 
                 <div class="info-box-content">
                     <span class="info-box-text"><strong>{{ event.name }}</strong></span>
                     <span class="space"><i class="fa fa-map-marker"></i>{{ event.location }}</span>
                     <p><span class="space">By {{event.designerName }}</span></p>
                 </div>
-                <!-- /.info-box-content -->
 
 
             </div>

@@ -15,7 +15,6 @@ app.controller('usefulController', ['toastr', '$stateParams', '$rootScope', '$sc
 
             $http.post("http://faiseanrata.com:5678/contact-form", data)
                 .then(function(response){
-                    // console.log(response.data);
                     toastr.success("Query Submitted. We will contact you soon");
                 }, function(err){
 

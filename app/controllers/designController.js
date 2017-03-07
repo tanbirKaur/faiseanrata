@@ -9,12 +9,11 @@ app.controller('designController', ['$stateParams', 'toastr', '$rootScope', '$sc
 
 			$http.get(appConstants.apiUrl + "/Designs/" + $stateParams.designId)
 				.then(function(response){
-					// console.log("Success");
+
 					$scope.data = response.data;
-					//console.log(response.data);
+
 				}, function(error){
-					//console.log("Error");
-					//console.log(err);
+
 				});
 
 		};

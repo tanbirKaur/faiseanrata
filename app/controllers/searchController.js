@@ -66,12 +66,11 @@ app.controller("searchController", ['$rootScope', '$state', '$stateParams', '$sc
 
 		$http.get(appConstants.apiUrl + 'Designers/search?data='+JSON.stringify($scope.data))
 			.then(function(response){
-				// console.log("Succes in searching..", JSON.stringify($scope.data));
+
 				$scope.designers = response.data.result;
-				// console.log($scope.designers);
+
 			}, function(err){
-				// console.log("Error while Searching");
-				// console.log(err);
+
 			});
 
 		if($scope.isMobile){

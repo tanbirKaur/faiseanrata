@@ -22,20 +22,7 @@ app.controller('loginController', ['$stateParams', 'toastr', '$rootScope', '$sco
 		
 	};
 
-	// function onSignIn(googleUser) {
- //        // Useful data for your client-side scripts:
- //        var profile = googleUser.getBasicProfile();
- //        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
- //        console.log('Full Name: ' + profile.getName());
- //        console.log('Given Name: ' + profile.getGivenName());
- //        console.log('Family Name: ' + profile.getFamilyName());
- //        console.log("Image URL: " + profile.getImageUrl());
- //        console.log("Email: " + profile.getEmail());
 
- //        // The ID token you need to pass to your backend:
- //        var id_token = googleUser.getAuthResponse().id_token;
- //        console.log("ID Token: " + id_token);
- //      };
 
 var data = {}
 
@@ -73,29 +60,29 @@ var data = {}
                 			$http.post(appConstants.apiUrl + "Externals/", data)
 			                	.then(function(response1){
 			                		toastr.success("Successfully logged in");
-			                		// console.log(response1);
+
                           $window.localStorage['userId'] = response1.data.id;
 					                $window.location.href = "/profile-edit";
 
 			                	}, function(err1){
-			                		// console.log("Error in Login PUT");
+
 			                		toastr.error("Error in Login");
-			            			// console.log(err1);
+
 			                		$window.localStorage.clear();
 			                	});
                 		}
 
                 		else
                 		{
-                			// console.log("Exist");
+
                 			toastr.success("Successfully logged in");
                       $window.localStorage['userId'] = response2.data[0].id;
 			                $window.location.href = "/profile-edit";
                 		}
                 	}, function(err2){
-                		// console.log("Error in Social Login GET");
+
                 		toastr.error("Error in Login");
-            			// console.log(err2);
+
                 		$window.localStorage.clear();
                 	});
 
@@ -138,12 +125,11 @@ var data = {}
 
 
 function facebookInit() {
-   // do what you would like here
 
      window.fbAsyncInit = function() {
   FB.init({
     appId      : '1138328379582618',
-    cookie     : false,  // enable cookies to allow the server to access 
+    cookie     : false,  // enable cookies to allow the server to access
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.5' // use graph api version 2.5
@@ -169,15 +155,12 @@ facebookInit();
 
   function testAPI() {
     FB.api('/me?scope=email', function(response) {
-		// console.log(response);
-		// console.log('Successful login for: ' + response.name);
 		data.name = response.name;
 		data.uid = "fb" + response.id;
 		data.email = "";
     
 	    FB.api('/me/picture?height=150&width:150', function(response) {
-			// console.log(response);
-			// console.log("picture");
+
 			data.image_url = response.data.url;
 		
 
@@ -188,38 +171,37 @@ facebookInit();
 	    			$window.localStorage['id'] = data.uid;
 	    			$window.localStorage['access_token'] = "";    
 	                $window.localStorage['type'] = "external";
-                  // console.log("response2");
-                  // console.log(response2.data);
+
 
             		if(response2.data.length == 0)
             		{
-            			// console.log("Not Exist");
+
             			$http.post(appConstants.apiUrl + "Externals/", data)
 		                	.then(function(response1){
 		                		toastr.success("successfully logged in PUT");
-		                		// console.log(response1);
+
                         $window.localStorage['userId'] = response1.data.id;
 				                $window.location.href = "/profile-edit";
 
 		                	}, function(err1){
-		                		// console.log("Error in Social Login PUT");
+
 		                		toastr.error("Error in Login");
-		            			// console.log(err1);
+
 		                		$window.localStorage.clear();
 		                	});
             		}
 
             		else
             		{
-            			// console.log("Exist");
+
             			toastr.success("successfully logged in GET");
                   $window.localStorage['userId'] = response2.data[0].id;
 		                $window.location.href = "/profile-edit";
             		}
             	}, function(err2){
-            		// console.log("Error in Social Login GET");
+
             		toastr.error("Error in Login");
-        			// console.log(err2);
+
             		$window.localStorage.clear();
             	});
 
@@ -227,31 +209,27 @@ facebookInit();
 
     });
 
-    // console.log(data);
+
 
   }
 
   $scope.fbLogin = function()
     {
 
-    // 	facebookInit();
 
-    // 	 FB.getLoginStatus(function(response) {
-    // 		statusChangeCallback(response);
- 		 // });
         FB.login(function(response) 
         {
            if (response.authResponse) 
            {
-             // console.log('Welcome!  Fetching your information.... ');
+
              var access_token = response.authResponse.accessToken;
-             // console.log(response.authResponse);
+
 
              testAPI();
            } 
            else 
            {
-             // console.log('User cancelled login or did not fully authorize.');
+
            }
          });
     };
