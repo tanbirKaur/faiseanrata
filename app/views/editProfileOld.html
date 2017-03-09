@@ -1,0 +1,153 @@
+  <div class="page-wrapper">
+      <div class="main">
+        <div class="main-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                      <div class="sidebar" style="width: 250px; display: inline-block;">
+                        <div class="widget">
+                          <div class="user-photo">
+                            
+
+                            <a href="#">
+            <img style="max-width:194px;max-height:194px;min-width:194px;min-height:194px;" src="{{ reviewer.image_url }}" id="profile-image" alt="User Photo">
+            <!--<span class="user-photo-action">Click here to reupload</span>-->
+        </a>
+        <input type="file" ng-files="getTheFiles($files)" onchange="readUrl(this);">
+            <script>
+                function readUrl(input){
+                    if(input.files && input.files[0]){
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#profile-image')
+                                .attr('src', e.target.result);
+                        };
+
+                        reader.readAsDataURL(input.files[0]);
+
+                    };
+                }
+            </script>
+                            </h2><center>
+                            <h6>&nbsp;<span><i class="fa fa-shield"></i></span><span ng-if="reviewer.badge=='' || reviewer.badge == null"> No Badge </span>
+                            <span> {{ reviewer.badge }} </span></h6>
+                            <h6>&nbsp;<span><i class="fa fa-database"></i></span> {{reviewer.points }} Points </h6></center>
+                          </div><!-- /.user-photo -->
+                        </div><!-- /.widget -->
+                      </div><!-- /.sidebar -->
+                    </div>
+                    <div class="col-md-8">
+                        <div class="main-content content-business single-business has-bg-image" data-bg-color="f5f5f5">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-9">
+                                  <div class="listing listing-1 single-listing">
+                                    <div class="listing-ver-1">
+                                      <div class="listing-tabs">
+                                        <ul>
+                                          <li style="width:50%;" class="active"><a target="_blank" href="#basic" data-toggle="tab"><i class="fa fa-user"> Profile</i></a></li>
+                                          <li ng-click="get_reviews()" style="width:50%;"><a target="_blank" href="#rating" data-toggle="tab"><i class="fa fa-star"> Reviews</i></a></li>
+                                        </ul>
+                                      </div>
+                                      <div class="tab-content">
+                                        <div id="basic" class="tab-pane fade in active basic-single">
+                                          <div class="listing-inner listing-inner-designer">
+                                            <div class="listing-content">
+                                              <div class="background-white p20 mb30">
+                                                <h3 class="page-title">
+                                                    Contact Information
+                                                </h3>
+
+                                                <div class="row">
+                                                    <div class="form-group col-sm-6">
+                                                        <label>Name</label>
+                                                        <input ng-if="reviewer.name != undefined" type="text" class="form-control" value="{{ reviewer.name }}">
+                                                        <input ng-model="reviewer.first_name" ng-if="reviewer.first_name != undefined" type="text" class="form-control" value="{{ reviewer.first_name }}">
+                                                    </div><!-- /.form-group -->
+
+                                                    <div ng-if="reviewer.last_name != undefined" class="form-group col-sm-6">
+                                                        <label>Surname</label>
+                                                        <input ng-model="reviewer.last_name" type="text" class="form-control" value="{{ reviewer.last_name }}">
+                                                    </div><!-- /.form-group -->
+
+                                                    <div class="form-group col-sm-6">
+                                                        <label>E-mail</label>
+                                                        <input type="text" class="form-control" value="{{ reviewer_email }}" disabled="disabled">
+                                                    </div><!-- /.form-group -->
+
+                                                    <div class="form-group col-sm-6">
+                                                        <label>Location</label>
+                                                        <input ng-model="reviewer.location" type="text" class="form-control" value="{{ reviewer.location }}">
+                                                    </div><!-- /.form-group -->
+
+                                                    <div class="form-group col-sm-6">
+                                                        <label>DOB</label>
+                                                        <input ng-model="reviewer.dob" type="date" class="form-control" value="{{ reviewer.dob | date: 'yyyy-MM-dd' }}">
+                                                    </div><!-- /.form-group -->
+
+                                                    <!--<div class="form-group col-sm-6">
+                                                        <label>Number</label>
+                                                        <input ng-model="reviewer.number" type="text" class="form-control" value="{{ reviewer.phone }}">
+                                                    </div>--><!-- /.form-group -->
+
+                                                </div><!-- /.row -->
+
+                                                <button class="btn btn-success" ng-click="save_changes()">Save Changes</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                                <div id="rating" class="tab-pane fade in rating">
+                                                  <div style="overflow-y:scroll;" class="listing-inner listing-inner-designer">
+                                                    <div class="listing-content">
+                                                      <h6 class="main-title">My Rating</h6>
+
+                                                      <div ng-init="get_designer_data(review.designerId, $index)" class="testimonial" ng-repeat="review in reviews">
+                                                    <div class="testimonial-image">
+                                                        <img style="margin:auto;max-height:80px;min-height:80px;max-width:80px;min-width:80px;" src="{{ designer_details[$index].image_url }}" alt="">
+                                                    </div><!-- /.testimonial-image -->
+                                                    <div class="testimonial-inner">
+                                                        <div class="testimonial-title">
+                                                          <h2 style="text-transform:none;"> {{ designer_details[$index].name }} </h2>
+                                                            <div class="testimonial-rating">
+                                                                <i ng-if="review.rating>=1" class="fa fa-star"></i>
+                                                                <i ng-if="review.rating>=1.5 && review.rating<2" class="fa fa-star-half"></i>
+                                                                <i ng-if="review.rating>=2" class="fa fa-star"></i>
+                                                                <i ng-if="review.rating>=2.5 && review.rating<3" class="fa fa-star-half"></i>
+                                                                <i ng-if="review.rating>=3" class="fa fa-star"></i>
+                                                                <i ng-if="review.rating>=3.5 && review.rating<4" class="fa fa-star-half"></i>
+                                                                <i ng-if="review.rating>=4" class="fa fa-star"></i>
+                                                                <i ng-if="review.rating>=4.5 && review.rating<5" class="fa fa-star-half"></i>
+                                                                <i ng-if="review.rating>=5" class="fa fa-star"></i>
+                                                            </div><!-- /.testimonial-rating -->
+                                                            <br>
+                                                            <div style="position:absolute;">{{ review.timestamp*1000 | date:'medium' }}</div>
+                                                        </div><!-- /.testimonial-title -->
+                                                        <br>
+                                                        {{ review.content }}
+
+                                                    </div><!-- /.testimonial-inner -->
+                                                </div><!-- /.testimonial -->
+                                                        
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.main-inner -->
+    </div><!-- /.main -->
+  </div>
+    
+
