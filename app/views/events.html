@@ -14,8 +14,8 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text"><strong>{{ event.name }}</strong></span>
-                    <span class="space"><i class="fa fa-map-marker"></i>{{ event.location }}</span>
-                    <p><span class="space">By {{event.designerName }}</span></p>
+                    <span class="space"><i class="fa fa-map-marker" style="padding-left: 0px;"></i>{{ event.location }}</span>
+                    <p><span ng-if="!event.designerName" class="space"></span><span ng-show="event.designer" class="space">By {{event.designerName }}</span></p>
                 </div>
 
 

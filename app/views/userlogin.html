@@ -1,0 +1,147 @@
+<div class="content-wrapper">
+    <div class="container">
+        <section class="content">
+            <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <div class="cont">
+                            <img class="profile-user-img img-responsive img-circle img" src="{{ reviewer.image_url }}" alt="User profile picture" id="profile-image">
+                            <div class="over"></div>
+                            <div class="but"> <input type="file" ng-files="getTheFiles($files)" onchange="readUrl(this);" class="col-md-offset-1">
+                            </div>
+
+                        </div>
+                        <script>
+                            function readUrl(input){
+                                if(input.files && input.files[0]){
+                                    var reader = new FileReader();
+
+                                    reader.onload = function (e) {
+                                        $('#profile-image')
+                                            .attr('src', e.target.result);
+                                    };
+
+                                    reader.readAsDataURL(input.files[0]);
+
+                                };
+                            }
+                        </script>
+                        <h3 class="profile-username text-center">{{reviewer.name }} </h3>
+
+                        <p class="text-muted text-center"><i class="fa fa-fw fa-map-marker"></i>{{reviewer.location }} </p>
+
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b style="color: #bd2b64;">Badge</b><span class="pull-right" ng-if="reviewer.badge=='' || reviewer.badge == null" >No Badge</span>
+                                <span class="pull-right" >{{reviewer.badge}}</span>
+                            </li>
+                            <li class="list-group-item unborder reviewer-card">
+                                <b style="color: #bd2b64;">Points</b> <span class="pull-right">{{reviewer.points }} Points </span>
+                            </li>
+
+
+                        </ul>
+
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+                <input type="file" ng-files="getTheFiles($files)" onchange="readUrl(this);" class="col-md-offset-1" style="margin-bottom: 10px;;">
+
+            </div>
+            <div class="col-md-9">
+                <div ng-controller="usefulController" class="nav-tabs-custom">
+                    <ul class="nav nav-tabs ">
+                        <li ng-class="{'active': activeTab == 1}"><a href="" ng-click="setActiveTab(1)" class="active"><i class="fa fa-fw fa-user"></i>Profile</a></li>
+                        <li ng-class="{'active': activeTab == 2}"><a href="" ng-click="setActiveTab(2)"><i class="fa fa-fw fa-flag"></i>Reviews</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div ng-class="{'tab-pane active':activeTab === 1,'tab-pane':activeTab !==1 }" class="tab1">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inputName" class="col-sm-2 control-label" >Name</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" ng-if="reviewer.name != undefined" class="form-control" id="inputName" placeholder="{{ reviewer.name }}">
+                                        <input ng-model="reviewer.first_name" ng-if="reviewer.first_name != undefined" type="text" class="form-control" value="{{ reviewer.first_name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputEmail" placeholder="{{ reviewer_email }}"">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputLoc"  class="col-sm-2 control-label">Location</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="text" ng-model="reviewer.location" class="form-control" id="inputLoc" placeholder="{{ reviewer.location }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date" class="col-sm-2 control-label">DOB</label>
+
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="date" ng-model="reviewer.dob" placeholder="{{ reviewer.dob | date: 'yyyy-MM-dd' }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                      <span class="input-group-btn ">
+                           <button ng-click="save_changes()" type="submit" class="    btn btn-pink  btn-block btn-flat" style="width: 105px; color:white;">Save Changes</button>
+                    </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div ng-class="{'tab-pane active':activeTab === 2,'tab-pane':activeTab !==2 }" class="tab2">
+                            <div ng-if="!reviews[0]"><h5 style="opacity: 0.8;">No reviews yet..</h5></div>
+                            <div class="item" ng-init="get_designer_data(review.designerId, $index)" ng-repeat="review in reviews">
+                                <img src="{{ designer_details[$index].image_url }}" alt="user image" class="online">
+
+                                <p class="message">
+                                    <a href="#" class="name">
+
+                                        {{ designer_details[$index].name }}
+                                    </a>
+
+                                </p>
+                                <div class="attachment">
+                                    <i ng-if="review.rating>=1" class="fa fa-star"></i>
+                                    <i ng-if="review.rating>=1.5 && review.rating<2" class="fa fa-star-half"></i>
+                                    <i ng-if="review.rating>=2" class="fa fa-star"></i>
+                                    <i ng-if="review.rating>=2.5 && review.rating<3" class="fa fa-star-half"></i>
+                                    <i ng-if="review.rating>=3" class="fa fa-star"></i>
+                                    <i ng-if="review.rating>=3.5 && review.rating<4" class="fa fa-star-half"></i>
+                                    <i ng-if="review.rating>=4" class="fa fa-star"></i>
+                                    <i ng-if="review.rating>=4.5 && review.rating<5" class="fa fa-star-half"></i>
+                                    <i ng-if="review.rating>=5" class="fa fa-star"></i>
+
+
+
+                                    <p class="filename">
+
+                                        {{ review.content }}
+
+                                    </p>
+
+
+                                </div>
+                                <!-- /.attachment -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>

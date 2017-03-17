@@ -21,6 +21,10 @@ app.controller('usefulController', ['toastr', '$stateParams', '$rootScope', '$sc
                     toastr.error("Error Submitting Query. Please try again Later");
                 });
         };
+        $scope.activeTab = 1;
+        $scope.setActiveTab= function(tabToSet) {
+            $scope.activeTab = tabToSet;
+        }
 
 
     }]);

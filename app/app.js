@@ -69,6 +69,12 @@ app.config(function($locationProvider, $stateProvider, $urlRouterProvider){
             templateUrl:"views/events.html",
             controller:"eventsController"
         })
+        .state("user-login", {
+            url:"/userlogin",
+            templateUrl:"views/userlogin.html",
+            controller:"usefulController"
+        })
+
         .state("about-us", {
             url:"/about_us",
             templateUrl:"views/about_us.html",

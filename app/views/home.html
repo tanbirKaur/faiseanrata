@@ -230,7 +230,7 @@
 
                                     <ul class="list-inline text-center" style="border-bottom: none;">
 
-                                        <li><a class="btn btn-primary btn-xs" style="background-color: #4267b2"><i class="fa fa-thumbs-up  margin-r-5" style="color: white;;"></i>LiKe &nbsp{{ design.likes }}</a></li>
+                                        <li><a class="btn btn-primary btn-xs" style="background-color: #4267b2"><i class="fa fa-thumbs-up  margin-r-5" style="color: white;;"></i>Like &nbsp{{ design.likes }}</a></li>
                                         <li><a fb-shared design="{{ design }}" class="btn btn-primary btn-xs" style="background-color: #4267b2">Share</a></li>
 
                                         </ul>
@@ -260,8 +260,10 @@
 
 
                                         <ul class="list-inline text-center" style="border-bottom: none;">
-                                            <li><a class="btn btn-primary btn-xs" style="background-color: #4267b2"><i class="fa fa-thumbs-up  margin-r-5" style="color: white;;"></i>LiKe &nbsp{{ design.likes }}</a></li>
+                                            <li  ><a  class="btn btn-primary btn-xs" style="background-color: #4267b2"><i class="fa fa-thumbs-up  margin-r-5" style="color: white;;"></i >Like &nbsp<span >{{ design.likes }}</span></a></li>
                                             <li><a fb-shared design="{{ design }}" class="btn btn-primary btn-xs" style="background-color: #4267b2">Share</a></li>
+                                            <button id="target" type="button">Click Me<span id="output">{{ design.likes }}</span></button>
+
 
                                         </ul>
 
@@ -272,6 +274,8 @@
                     </ul>
                 </div>
             </div>
+
+
 
 
 
@@ -328,7 +332,20 @@
             maxItems: 12
         });
     });
-
+    // the button
+//    var btn = document.getElementById("like-btn");
+//
+//    // the counter
+//    var counter = document.getElementById("btn-counter");
+//
+//    // set the counter to 0
+//    counter.innerHTML = 0;
+//
+//    // increment the counter by 1 everytime the user clicks on the button
+//    btn.onclick = function()
+//    {
+//        counter.innerHTML++;
+//    };
 
 
 //    $(".fancybox")
@@ -356,6 +373,11 @@
 //                }
 //            }
 //        });
+
+    $('#target').click(function() {
+        $('#output').html(function(i, val) { return val*1+1 });
+    });
+
 </script>
 
 
